@@ -7,16 +7,12 @@ TODO: Write a gem description
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'wechat'
+  gem 'wechat', git: 'https://github.com/sproutke/wechat.git'
 ```
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install wechat
 
 ## Usage
 
