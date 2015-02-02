@@ -10,6 +10,10 @@ describe Wechat::Client do
       with(:body => { touser: "12345", msgtype: "text", text: { content: "Hello world"} }.to_json ).
       to_return(:status => 200, :body => { errmsg: "ok" }.to_json, :headers => {})
 
+    stub_request(:post, "#{Wechat::Client::SEND_URL}token").
+      with(:body => { touser: "12345", msgtype: "news", news: { articles: [{ title: "Hello world", description: "description", picurl: "picurl" }] } }.to_json ).
+      to_return(:status => 200, :body => { errmsg: "ok" }.to_json, :headers => {})
+
 
   end
 
@@ -20,19 +24,6 @@ describe Wechat::Client do
 
     it { expect(subject.has_token?).to eql(true) }
     it { expect(subject.send_message('12345', 'Hello world')).to be true }
+    it { expect(subject.send_rich_media_message('12345', 'Hello world', 'description', 'picurl')).to be true }
   end
-
-
-  # describe 'sending a message' do
-  #   before do
-  #     stub_request(:post, "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=token").
-  #     with(:body => "{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}").
-  #     to_return(:status => 200, :body => "", :headers => {})
-  #   end
-
-  #   client = Wechat::Client.new('app_id', 'secret', 'token')  
-  #   status = client.send_message '12345', 'Hello world'
-
-  #   it { expect(status).to be true }
-  # end
 end

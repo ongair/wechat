@@ -33,6 +33,7 @@ module Wechat
 
     TOKEN_URL = 'https://api.weixin.qq.com/cgi-bin/token'
     SEND_URL = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='
+    
 
     def initialize(app_id, secret, access_token=nil)
       @access_token = access_token
@@ -43,13 +44,15 @@ module Wechat
       end
     end
 
-    def send_message to, text
-      url = "#{SEND_URL}#{@access_token}"
-      
+    def send_message to, text        
       request = { touser: "#{to}", msgtype: "text", text: { content: "#{text}" }}.to_json            
-      response = HTTParty.post(url, body: request, :debug_output => $stdout)
+      send request
+    end
 
-      JSON.parse(response.body)["errmsg"] == "ok"
+    def send_rich_media_message to, title, description, pic_url
+                  
+      request = { touser: "#{to}", msgtype: "news", news: { articles: [{ title: "#{title}", description: "#{description}", picurl: "picurl" }] }}.to_json          
+      send request
     end
 
     def has_token?
@@ -57,6 +60,12 @@ module Wechat
     end
 
     private
+
+    def send request
+      url = "#{SEND_URL}#{@access_token}"
+      response = HTTParty.post(url, body: request, :debug_output => $stdout)
+      JSON.parse(response.body)["errmsg"] == "ok"
+    end
 
     def get_token app_id, secret
       response = HTTParty.get("#{TOKEN_URL}?grant_type=client_credential&appid=#{app_id}&secret=#{secret}", :debug_output => $stdout)
