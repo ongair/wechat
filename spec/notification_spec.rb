@@ -19,4 +19,12 @@ describe Wechat::Notification do
 
     it { expect(subject.notification_type).to eql(Wechat::Notification::EVENT)}
   end
+
+  context 'Handle click events' do
+    subject {
+      Wechat::Notification.new("<xml><ToUserName><![CDATA[gh_ca6fe576b4e4]]></ToUserName><FromUserName><![CDATA[oTIrjt0N7gK4_mMk1UAwB7rXcNcw]]></FromUserName><CreateTime>1423048318</CreateTime><MsgType><![CDATA[event]]></MsgType><Event><![CDATA[CLICK]]></Event><EventKey><![CDATA[news]]></EventKey></xml>")
+    }
+
+    it { expect(subject.is_event?).to eql(true) }
+  end
 end

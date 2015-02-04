@@ -8,8 +8,9 @@ module Wechat
   class Notification
     TEXT_NOTIFICATION = 'text'
     EVENT = 'event'
+    CLICK = 'CLICK'
 
-    attr_accessor :notification_type, :content, :from, :created_at
+    attr_accessor :notification_type, :content, :from, :created_at, :event_key, :event
 
     def initialize(xml_string)
       parse(xml_string)
@@ -22,6 +23,8 @@ module Wechat
       @created_at = Time.at(doc.xpath("//CreateTime").first.content.to_i)
       @notification_type = doc.xpath("//MsgType").first.content
       @content = doc.xpath("//Content").first.content if !doc.xpath("//Content").first.nil?
+      @event_key = doc.xpath("//EventKey").first.content if !doc.xpath("//EventKey").first.nil?
+      @event = doc.xpath("//Event").first.content if !doc.xpath("//Event").first.nil?
     end
 
     def is_message?
@@ -29,7 +32,11 @@ module Wechat
     end
 
     def is_event?
-      @notification_type == event
+      @notification_type == EVENT
+    end
+
+    def is_click?
+      @event == CLICK
     end
   end
 
