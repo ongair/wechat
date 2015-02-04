@@ -61,10 +61,20 @@ module Wechat
       send request
     end
 
+    def send_multiple_rich_messages to, messages
+      articles = []
+      messages.each do |message|
+        articles << { title: message[:title], description: message[:description], picurl: message[:picurl] }
+      end
+      request = { touser: "#{to}", msgtype: "news", news: { articles: articles }}.to_json
+      send request
+    end
+
     def send_rich_media_message to, title, description, pic_url
                   
-      request = { touser: "#{to}", msgtype: "news", news: { articles: [{ title: "#{title}", description: "#{description}", picurl: "picurl" }] }}.to_json          
-      send request
+      # request = { touser: "#{to}", msgtype: "news", news: { articles: [{ title: "#{title}", description: "#{description}", picurl: "picurl" }] }}.to_json          
+      # send request
+      send_multiple_rich_messages to, [{ title: title, description: description, picurl: pic_url }]
     end
 
     def get_token
