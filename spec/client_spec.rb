@@ -17,6 +17,14 @@ describe Wechat::Client do
 
   end
 
+  context 'refresh an access code' do
+    subject {
+      Wechat::Client.new("app_id", "secret")
+    }
+
+    it { expect(subject.get_token).to eql(['token', 7200])}
+  end
+
   context 'request an access code that gets cached' do
     subject {
       Wechat::Client.new("app_id", "secret", "token")

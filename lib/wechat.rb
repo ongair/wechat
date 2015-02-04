@@ -1,7 +1,6 @@
 require 'wechat/version'
 require 'nokogiri'
 require 'httparty'
-require 'redis'
 require 'json'
 
 module Wechat
@@ -37,10 +36,11 @@ module Wechat
 
     def initialize(app_id, secret, access_token=nil)
       @access_token = access_token
-      @redis = Redis.new
+      @app_id = app_id
+      @secret = secret
 
       if access_token.nil?
-        get_token(app_id, secret)
+        get_token
       end
     end
 
@@ -55,8 +55,18 @@ module Wechat
       send request
     end
 
+    def get_token
+      response = HTTParty.get("#{TOKEN_URL}?grant_type=client_credential&appid=#{@app_id}&secret=#{@secret}", :debug_output => $stdout)      
+      json = JSON.parse(response.body)
+
+      @access_token = json["access_token"]
+      expiry = json["expires_in"]      
+            
+      [@access_token, expiry]
+    end
+
     def has_token?
-      !@access_token.nil? || !@redis.get('access_token').nil?
+      !@access_token.nil?
     end
 
     private
@@ -65,18 +75,6 @@ module Wechat
       url = "#{SEND_URL}#{@access_token}"
       response = HTTParty.post(url, body: request, :debug_output => $stdout)
       JSON.parse(response.body)["errmsg"] == "ok"
-    end
-
-    def get_token app_id, secret
-      response = HTTParty.get("#{TOKEN_URL}?grant_type=client_credential&appid=#{app_id}&secret=#{secret}", :debug_output => $stdout)
-      @access_token = response["access_token"]
-      expiry = response["expires_in"]      
-
-      
-      @redis.set 'access_token', @access_token
-      @redis.expire 'access_token', expiry.to_i
-    end
-
-    
+    end    
   end
 end
