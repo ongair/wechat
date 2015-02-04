@@ -7,6 +7,7 @@ module Wechat
   
   class Notification
     TEXT_NOTIFICATION = 'text'
+    EVENT = 'event'
 
     attr_accessor :notification_type, :content, :from, :created_at
 
@@ -20,11 +21,15 @@ module Wechat
       @from = doc.xpath("//FromUserName").first.content
       @created_at = Time.at(doc.xpath("//CreateTime").first.content.to_i)
       @notification_type = doc.xpath("//MsgType").first.content
-      @content = doc.xpath("//Content").first.content
+      @content = doc.xpath("//Content").first.content if !doc.xpath("//Content").first.nil?
     end
 
     def is_message?
       @notification_type == TEXT_NOTIFICATION
+    end
+
+    def is_event?
+      @notification_type == event
     end
   end
 
