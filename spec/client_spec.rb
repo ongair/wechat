@@ -37,7 +37,6 @@ EOS
 
   context 'can receive message' do
     it do
-      debugger
       expect(we_chat_client.access_token).to eql('token_within_client')
       expect(we_chat_client.receive_message(xml)['ToUserName']).to eq('gh_283218b72e')
       expect(we_chat_client.receive_message(xml)['FromUserName']).to eq('odmSit8iRc_AdaTrWoEGabw4nVd8')
