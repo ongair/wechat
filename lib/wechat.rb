@@ -4,7 +4,6 @@ require 'httparty'
 require 'json'
 require 'rack'
 require 'rack/session/redis'
-require 'debugger'
 require 'timecop'
 
 module Wechat
