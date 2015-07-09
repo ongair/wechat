@@ -18,7 +18,8 @@ And then execute:
 ## Usage
 
     require 'wechat'
- ### Receiving messages
+
+### Receiving messages
  When the WeChat server sends a message it must be authenticated and a response sent back to the WeChat server. The WeChat server expects the unchanged `echostr` as the response upon successful authentication. The WeChat server sends a `POST` request to the submitted URL with four parameters: `signature`, `timestamp`, `nonce` and `echostr` and the message in the body. Developers authenticate the messages by checking the signature parameter and extract the XML message from the body.
 
  ```ruby
