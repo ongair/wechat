@@ -39,7 +39,7 @@ EOS
   context 'can authenticate to receive a new message' do
     it do
       expect(we_chat_client.access_token).to eql('token_within_client')
-      expect(we_chat_client.authenticate(echostr, nonce, signature, timestamp)).to be(true)
+      expect(we_chat_client.authenticate(nonce, signature, timestamp)).to be(true)
     end
   end
 

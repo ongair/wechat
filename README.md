@@ -26,13 +26,14 @@ And then execute:
  def receive_message
     we_chat_client = Wechat::Client.new(app_id, secret, customer_token)
 
-    render text: echostr if we_chat_client.authenticate(params[:echostr],params[:nonce],params[:signature], params[:timestamp])
+    render text: params[:echostr] if we_chat_client.authenticate(params[:nonce],params[:signature], params[:timestamp])
     message = we_chat_client.receive_message(response.body.read)
  end
 
  message #{"FromUserName"=>"odmSit8iRc_AdaTrWoEGabi4nVd8", "CreateTime"=>"1436355707", "MsgType"=>"text", "Content"=>"How's it going?", "MsgId"=>"6169100787194945124"}
  ```
 
+### Sending messages
 
 ## Contributing
 
