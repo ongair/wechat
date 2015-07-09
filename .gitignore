@@ -12,4 +12,4 @@
 *.o
 *.a
 mkmf.log
-/log/redis.9736.log
+log/redis.9736.log
