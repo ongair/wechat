@@ -106,9 +106,9 @@ module Wechat
     # When developers try to authenticate a message
     # for the first time, the WeChat server sends a
     # POST request containing the validation params and
-    # the message in the body and converts t JSON string
+    # the message in the body and converts to JSON string
     #
-    # @param message [XML] an XML object containing the message
+    # @param xml_message [XML] an XML object containing the message
     # @return [JSON] the message
     def receive_message xml_message
       doc = Nokogiri::XML(xml_message)
