@@ -1,6 +1,7 @@
 # Wechat
+A gem to interact with the WeChat API.
 
-TODO: Write a gem description
+Currently supporting authentication, access token aquisition, message receipt and the sending of text and image messages.
 
 ## Installation
 
@@ -16,19 +17,20 @@ And then execute:
 
 ## Usage
 
-### Parsing WeChat xml messages
+    require 'wechat'
+ ### Receiving messages
+ When the WeChat server sends a message it must be authenticated and a response sent back to the WeChat server. The WeChat server expects the unchanged `echostr` as the response upon successful authentication. The WeChat server sends a `POST` request to the submitted URL with four parameters: `signature`, `timestamp`, `nonce` and `echostr` and the message in the body. Developers authenticate the messages by checking the signature parameter and extract the XML message from the body.
 
-WeChat notifies your server by posting xml messages.
+ ```ruby
+ def receive_message
+    we_chat_client = Wechat::Client.new(app_id, secret, customer_token)
 
-```
-  require 'wechat'
-  
-  xml = "<xml><ToUserName><![CDATA[your_id]]></ToUserName>\n<FromUserName><![CDATA[contact_id]]></FromUserName>\n<CreateTime>create_time</CreateTime>\n<MsgType><![CDATA[text]]></MsgType>\n<Content><![CDATA[The message]]></Content>\n<MsgId>Id</MsgId>\n</xml>"
+    render text: echostr if we_chat_client.authenticate(params[:echostr],params[:nonce],params[:signature], params[:timestamp])
+    message = we_chat_client.receive_message(response.body.read)
+ end
 
-  def notification = Notification.new(xml)
-  puts notification.notification_type #text
-  puts notification.is_message? #true
-```
+ message #{"FromUserName"=>"odmSit8iRc_AdaTrWoEGabi4nVd8", "CreateTime"=>"1436355707", "MsgType"=>"text", "Content"=>"How's it going?", "MsgId"=>"6169100787194945124"}
+ ```
 
 
 ## Contributing
