@@ -34,6 +34,19 @@ And then execute:
  ```
 
 ### Sending messages
+#### Text Message
+
+```ruby
+we_chat_client = Wechat::Client.new(app_id, secret, customer_token)
+we_chat_client.send_message(to_user,'text',message)
+```
+
+#### Image Message
+
+```ruby
+we_chat_client = Wechat::Client.new(app_id, secret, customer_token)
+we_chat_client.send_message(to_user,'image',message)
+```
 
 ## Contributing
 

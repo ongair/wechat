@@ -109,7 +109,7 @@ module Wechat
     # the message in the body and converts t JSON string
     #
     # @param message [XML] an XML object containing the message
-    # @return [JSON] the message making more sense
+    # @return [JSON] the message
     def receive_message xml_message
       doc = Nokogiri::XML(xml_message)
       out = []
@@ -124,7 +124,12 @@ module Wechat
       out.first
     end
 
-
+    # Sends a message
+    #
+    # @param to [String] The recipient of the message
+    # @param msg_type [String] The type of message. Can be text or image.
+    # @param content [String] The message or media_id
+    # @return [Boolean] if message was sent successfully
     def send_message to, msg_type, content
       request = case msg_type
       when 'text'
@@ -152,12 +157,11 @@ module Wechat
     end
 
     private
-
-    def send request
-      url = "#{SEND_URL}#{@access_token}"
-      response = HTTParty.post(url, body: request, :debug_output => $stdout)
-      JSON.parse(response.body)["errmsg"] == "ok"
-    end
+      def send request
+        url = "#{SEND_URL}#{@access_token}"
+        response = HTTParty.post(url, body: request, :debug_output => $stdout)
+        JSON.parse(response.body)["errmsg"] == "ok"
+      end
   end
 
   # class Notification
