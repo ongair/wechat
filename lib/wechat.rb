@@ -75,7 +75,7 @@ module Wechat
 
   class Client
     attr_accessor :access_token, :customer_token
-    SEND_URL = 'https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='
+    SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
 
     def initialize(app_id, secret, customer_token)
       @app_id = app_id
@@ -105,7 +105,6 @@ module Wechat
       digest == signature
     end
 
-
     # When developers try to authenticate a message
     # for the first time, the WeChat server sends a
     # POST request containing the validation params and
@@ -128,8 +127,13 @@ module Wechat
     end
 
 
-    def send_message to, text
-      request = { touser: "#{to}", msgtype: "text", text: { content: "#{text}" }}.to_json
+    def send_message to, msg_type, content
+      request = case msg_type
+      when 'text'
+        { touser: to, msgtype: msg_type, text: { content: content }}.to_json
+      when 'image'
+        { touser: to, msgtype: msg_type, image: { media_id: content }}.to_json
+      end
       send request
     end
 
@@ -158,38 +162,38 @@ module Wechat
     end
   end
 
-  class Notification
-    TEXT_NOTIFICATION = 'text'
-    EVENT = 'event'
-    CLICK = 'CLICK'
-
-    attr_accessor :notification_type, :content, :from, :created_at, :event_key, :event
-
-    def initialize(xml_string)
-      parse(xml_string)
-    end
-
-    def parse(xml)
-      doc = Nokogiri::XML(xml)
-      to = doc.xpath("//ToUserName").first.content
-      @from = doc.xpath("//FromUserName").first.content
-      @created_at = Time.at(doc.xpath("//CreateTime").first.content.to_i)
-      @notification_type = doc.xpath("//MsgType").first.content
-      @content = doc.xpath("//Content").first.content if !doc.xpath("//Content").first.nil?
-      @event_key = doc.xpath("//EventKey").first.content if !doc.xpath("//EventKey").first.nil?
-      @event = doc.xpath("//Event").first.content if !doc.xpath("//Event").first.nil?
-    end
-
-    def is_message?
-      @notification_type == TEXT_NOTIFICATION
-    end
-
-    def is_event?
-      @notification_type == EVENT
-    end
-
-    def is_click?
-      @event == CLICK
-    end
-  end
+  # class Notification
+ #    TEXT_NOTIFICATION = 'text'
+ #    EVENT = 'event'
+ #    CLICK = 'CLICK'
+ #
+ #    attr_accessor :notification_type, :content, :from, :created_at, :event_key, :event
+ #
+ #    def initialize(xml_string)
+ #      parse(xml_string)
+ #    end
+ #
+ #    def parse(xml)
+ #      doc = Nokogiri::XML(xml)
+ #      to = doc.xpath("//ToUserName").first.content
+ #      @from = doc.xpath("//FromUserName").first.content
+ #      @created_at = Time.at(doc.xpath("//CreateTime").first.content.to_i)
+ #      @notification_type = doc.xpath("//MsgType").first.content
+ #      @content = doc.xpath("//Content").first.content if !doc.xpath("//Content").first.nil?
+ #      @event_key = doc.xpath("//EventKey").first.content if !doc.xpath("//EventKey").first.nil?
+ #      @event = doc.xpath("//Event").first.content if !doc.xpath("//Event").first.nil?
+ #    end
+ #
+ #    def is_message?
+ #      @notification_type == TEXT_NOTIFICATION
+ #    end
+ #
+ #    def is_event?
+ #      @notification_type == EVENT
+ #    end
+ #
+ #    def is_click?
+ #      @event == CLICK
+ #    end
+ #  end
 end

@@ -5901,3 +5901,1013 @@
 [62854] 08 Jul 17:09:01.274 - Accepted ::1:52266
 [62854] 08 Jul 17:09:01.317 - Accepted ::1:52267
 [62854] 08 Jul 17:09:01.356 - Accepted ::1:52268
+[63194] 08 Jul 17:25:09.197 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 63194
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[63194] 08 Jul 17:25:09.206 # Server started, Redis version 2.8.12
+[63194] 08 Jul 17:25:09.207 * The server is now ready to accept connections on port 9736
+[63194] 08 Jul 17:25:09.305 - Accepted ::1:52593
+[63194] 08 Jul 17:25:09.305 - 1 clients connected (0 slaves), 970000 bytes in use
+[63194] 08 Jul 17:25:09.314 - Accepted ::1:52594
+[63194] 08 Jul 17:25:09.352 - Accepted ::1:52595
+[63194] 08 Jul 17:25:09.356 - Accepted ::1:52596
+[63194] 08 Jul 17:25:09.358 - Accepted ::1:52597
+[63194] 08 Jul 17:25:09.363 - Accepted ::1:52598
+[63194] 08 Jul 17:25:09.364 - Accepted ::1:52599
+[63194] 08 Jul 17:25:09.402 - Accepted ::1:52600
+[63194] 08 Jul 17:25:09.404 - Accepted ::1:52601
+[63194] 08 Jul 17:25:09.446 - Accepted ::1:52602
+[63194] 08 Jul 17:25:09.483 - Accepted ::1:52603
+[63626] 08 Jul 17:44:16.419 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 63626
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[63626] 08 Jul 17:44:16.428 # Server started, Redis version 2.8.12
+[63626] 08 Jul 17:44:16.429 * The server is now ready to accept connections on port 9736
+[63626] 08 Jul 17:44:16.524 - Accepted ::1:53005
+[63626] 08 Jul 17:44:16.524 - 1 clients connected (0 slaves), 970000 bytes in use
+[63626] 08 Jul 17:44:16.533 - Accepted ::1:53006
+[63626] 08 Jul 17:44:16.572 - Accepted ::1:53007
+[63626] 08 Jul 17:44:16.575 - Accepted ::1:53008
+[63626] 08 Jul 17:44:16.577 - Accepted ::1:53009
+[63626] 08 Jul 17:44:16.581 - Accepted ::1:53010
+[63626] 08 Jul 17:44:16.583 - Accepted ::1:53011
+[63626] 08 Jul 17:44:16.623 - Accepted ::1:53012
+[63626] 08 Jul 17:44:16.625 - Accepted ::1:53013
+[63626] 08 Jul 17:44:16.664 - Accepted ::1:53014
+[63626] 08 Jul 17:44:16.748 - Accepted ::1:53015
+[63626] 08 Jul 17:44:18.984 - Accepted ::1:53016
+[63656] 08 Jul 17:45:17.257 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 63656
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[63656] 08 Jul 17:45:17.264 # Server started, Redis version 2.8.12
+[63656] 08 Jul 17:45:17.264 * The server is now ready to accept connections on port 9736
+[63656] 08 Jul 17:45:17.362 - Accepted ::1:53027
+[63656] 08 Jul 17:45:17.362 - 1 clients connected (0 slaves), 970000 bytes in use
+[63656] 08 Jul 17:45:17.369 - Accepted ::1:53028
+[63656] 08 Jul 17:45:17.406 - Accepted ::1:53029
+[63656] 08 Jul 17:45:17.410 - Accepted ::1:53030
+[63656] 08 Jul 17:45:17.412 - Accepted ::1:53031
+[63656] 08 Jul 17:45:17.416 - Accepted ::1:53032
+[63656] 08 Jul 17:45:17.418 - Accepted ::1:53033
+[63656] 08 Jul 17:45:17.455 - Accepted ::1:53034
+[63656] 08 Jul 17:45:17.457 - Accepted ::1:53035
+[63656] 08 Jul 17:45:17.499 - Accepted ::1:53036
+[63656] 08 Jul 17:45:17.539 - Accepted ::1:53037
+[63656] 08 Jul 17:45:18.931 - Accepted ::1:53038
+[1692] 09 Jul 12:14:49.424 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 1692
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[1692] 09 Jul 12:14:49.432 # Server started, Redis version 2.8.12
+[1692] 09 Jul 12:14:49.433 * The server is now ready to accept connections on port 9736
+[1692] 09 Jul 12:14:49.527 - Accepted ::1:49899
+[1692] 09 Jul 12:14:49.527 - 1 clients connected (0 slaves), 970000 bytes in use
+[1692] 09 Jul 12:14:49.536 - Accepted ::1:49900
+[1692] 09 Jul 12:14:49.583 - Accepted ::1:49901
+[1692] 09 Jul 12:14:49.587 - Accepted ::1:49902
+[1692] 09 Jul 12:14:49.589 - Accepted ::1:49903
+[1692] 09 Jul 12:14:49.593 - Accepted ::1:49904
+[1692] 09 Jul 12:14:49.595 - Accepted ::1:49905
+[1692] 09 Jul 12:14:49.643 - Accepted ::1:49906
+[1692] 09 Jul 12:14:49.644 - Accepted ::1:49907
+[1692] 09 Jul 12:14:49.686 - Accepted ::1:49908
+[1692] 09 Jul 12:14:49.719 - Accepted ::1:49909
+[1692] 09 Jul 12:14:54.570 - 11 clients connected (0 slaves), 1141968 bytes in use
+[1692] 09 Jul 12:14:59.608 - 11 clients connected (0 slaves), 1141968 bytes in use
+[1692] 09 Jul 12:15:01.653 - Accepted ::1:49913
+[1720] 09 Jul 12:15:13.779 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 1720
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[1720] 09 Jul 12:15:13.783 # Server started, Redis version 2.8.12
+[1720] 09 Jul 12:15:13.783 * The server is now ready to accept connections on port 9736
+[1720] 09 Jul 12:15:13.887 - Accepted ::1:49921
+[1720] 09 Jul 12:15:13.887 - 1 clients connected (0 slaves), 970000 bytes in use
+[1720] 09 Jul 12:15:13.894 - Accepted ::1:49922
+[1720] 09 Jul 12:15:13.933 - Accepted ::1:49923
+[1720] 09 Jul 12:15:13.937 - Accepted ::1:49924
+[1720] 09 Jul 12:15:13.938 - Accepted ::1:49925
+[1720] 09 Jul 12:15:13.942 - Accepted ::1:49926
+[1720] 09 Jul 12:15:13.943 - Accepted ::1:49927
+[1720] 09 Jul 12:15:13.979 - Accepted ::1:49928
+[1720] 09 Jul 12:15:13.981 - Accepted ::1:49929
+[1720] 09 Jul 12:15:14.023 - Accepted ::1:49930
+[1720] 09 Jul 12:15:14.062 - Accepted ::1:49931
+[1720] 09 Jul 12:15:18.924 - 11 clients connected (0 slaves), 1141968 bytes in use
+[1720] 09 Jul 12:15:19.297 - Accepted ::1:49935
+[1720] 09 Jul 12:15:23.965 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:15:23.965 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:15:29.005 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:15:29.006 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:15:34.049 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:15:34.051 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:15:39.085 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:15:39.085 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:15:44.129 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:15:44.129 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:15:49.171 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:15:49.171 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:15:54.211 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:15:54.212 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:15:59.258 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:15:59.258 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:04.308 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:04.309 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:09.352 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:09.352 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:14.400 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:14.401 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:19.440 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:19.440 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:24.490 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:24.490 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:29.526 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:29.527 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:34.568 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:34.569 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:39.603 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:39.603 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:44.650 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:44.652 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:49.698 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:49.698 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:54.737 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:54.737 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:16:59.774 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:16:59.775 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:17:04.819 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:17:04.819 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:17:09.866 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:17:09.867 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:17:14.910 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:17:14.910 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:17:19.947 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:17:19.947 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:17:24.996 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:17:24.996 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:17:30.044 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:17:30.044 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:17:35.080 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:17:35.081 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:17:40.125 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:17:40.125 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:17:45.171 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:17:45.171 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:17:50.217 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:17:50.217 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:17:55.263 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:17:55.265 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:00.312 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:00.312 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:05.361 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:05.362 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:10.404 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:10.404 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:15.443 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:15.444 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:20.498 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:20.498 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:25.537 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:25.537 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:30.585 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:30.586 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:35.631 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:35.634 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:40.684 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:40.685 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:45.732 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:45.733 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:50.775 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:50.775 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:18:55.817 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:18:55.817 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:00.862 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:00.863 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:05.907 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:05.907 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:10.949 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:10.951 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:15.994 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:15.994 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:21.028 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:21.029 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:26.075 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:26.075 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:31.119 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:31.120 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:36.160 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:36.162 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:41.205 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:41.206 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:46.257 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:46.259 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:51.308 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:51.309 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:19:56.355 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:19:56.355 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:20:01.400 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:01.400 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:20:06.434 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:06.435 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:20:11.477 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:11.480 - 12 clients connected (0 slaves), 1159488 bytes in use
+[1720] 09 Jul 12:20:14.002 - Closing idle client
+[1720] 09 Jul 12:20:14.002 - Closing idle client
+[1720] 09 Jul 12:20:14.004 - Closing idle client
+[1720] 09 Jul 12:20:14.004 - Closing idle client
+[1720] 09 Jul 12:20:14.004 - Closing idle client
+[1720] 09 Jul 12:20:14.004 - Closing idle client
+[1720] 09 Jul 12:20:14.004 - Closing idle client
+[1720] 09 Jul 12:20:14.005 - Closing idle client
+[1720] 09 Jul 12:20:14.005 - Closing idle client
+[1720] 09 Jul 12:20:15.014 - Closing idle client
+[1720] 09 Jul 12:20:15.014 - Closing idle client
+[1720] 09 Jul 12:20:16.530 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:16.530 - 1 clients connected (0 slaves), 969216 bytes in use
+[1720] 09 Jul 12:20:20.063 - Closing idle client
+[1720] 09 Jul 12:20:21.578 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:21.578 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:20:26.623 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:26.624 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:20:31.673 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:31.674 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:20:36.720 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:36.720 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:20:41.762 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:41.762 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:20:46.807 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:46.807 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:20:51.854 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:51.854 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:20:56.902 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:20:56.905 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:01.952 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:01.953 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:06.995 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:06.995 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:12.044 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:12.044 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:17.093 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:17.094 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:22.138 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:22.139 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:27.183 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:27.185 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:32.228 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:32.229 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:37.259 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:37.259 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:42.312 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:42.312 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:47.359 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:47.359 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:52.405 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:52.405 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:21:57.453 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:21:57.454 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:02.498 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:02.500 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:07.547 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:07.547 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:12.580 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:12.581 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:17.623 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:17.626 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:22.670 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:22.670 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:27.708 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:27.708 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:32.752 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:32.753 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:37.798 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:37.799 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:42.840 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:42.841 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:47.885 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:47.886 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:52.932 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:52.932 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:22:57.977 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:22:57.978 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:03.022 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:03.023 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:08.072 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:08.074 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:13.122 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:13.122 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:18.164 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:18.164 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:23.213 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:23.213 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:28.260 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:28.260 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:33.295 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:33.295 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:38.341 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:38.342 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:43.379 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:43.381 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:48.434 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:48.434 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:53.480 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:53.480 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:23:58.527 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:23:58.527 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:03.571 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:03.573 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:08.613 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:08.614 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:13.652 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:13.652 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:18.698 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:18.698 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:23.746 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:23.748 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:28.792 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:28.792 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:33.842 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:33.844 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:38.887 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:38.887 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:43.934 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:43.935 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:48.980 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:48.980 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:54.018 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:54.019 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:24:59.065 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:24:59.066 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:25:04.118 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:25:04.118 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:25:09.166 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:25:09.166 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:25:14.213 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:25:14.213 - 0 clients connected (0 slaves), 951920 bytes in use
+[1720] 09 Jul 12:25:19.268 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[1720] 09 Jul 12:25:19.269 - 0 clients connected (0 slaves), 951920 bytes in use
+[2469] 09 Jul 12:25:24.471 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 2469
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[2469] 09 Jul 12:25:24.474 # Server started, Redis version 2.8.12
+[2469] 09 Jul 12:25:24.474 * The server is now ready to accept connections on port 9736
+[2469] 09 Jul 12:25:24.474 - 0 clients connected (0 slaves), 952720 bytes in use
+[2469] 09 Jul 12:25:24.576 - Accepted ::1:50136
+[2469] 09 Jul 12:25:24.584 - Accepted ::1:50137
+[2469] 09 Jul 12:25:24.617 - Accepted ::1:50138
+[2469] 09 Jul 12:25:24.620 - Accepted ::1:50139
+[2469] 09 Jul 12:25:24.621 - Accepted ::1:50140
+[2469] 09 Jul 12:25:24.625 - Accepted ::1:50141
+[2469] 09 Jul 12:25:24.626 - Accepted ::1:50142
+[2469] 09 Jul 12:25:24.664 - Accepted ::1:50143
+[2469] 09 Jul 12:25:24.665 - Accepted ::1:50144
+[2469] 09 Jul 12:25:24.703 - Accepted ::1:50145
+[2469] 09 Jul 12:25:24.738 - Accepted ::1:50146
+[2469] 09 Jul 12:25:26.174 - Accepted ::1:50148
+[2560] 09 Jul 12:25:50.608 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 2560
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[2560] 09 Jul 12:25:50.611 # Server started, Redis version 2.8.12
+[2560] 09 Jul 12:25:50.611 * The server is now ready to accept connections on port 9736
+[2560] 09 Jul 12:25:50.611 - 0 clients connected (0 slaves), 952720 bytes in use
+[2560] 09 Jul 12:25:50.714 - Accepted ::1:50155
+[2560] 09 Jul 12:25:50.722 - Accepted ::1:50156
+[2560] 09 Jul 12:25:50.755 - Accepted ::1:50157
+[2560] 09 Jul 12:25:50.758 - Accepted ::1:50158
+[2560] 09 Jul 12:25:50.760 - Accepted ::1:50159
+[2560] 09 Jul 12:25:50.764 - Accepted ::1:50160
+[2560] 09 Jul 12:25:50.765 - Accepted ::1:50161
+[2560] 09 Jul 12:25:50.798 - Accepted ::1:50162
+[2560] 09 Jul 12:25:50.799 - Accepted ::1:50163
+[2560] 09 Jul 12:25:50.839 - Accepted ::1:50164
+[2560] 09 Jul 12:25:50.874 - Accepted ::1:50165
+[2560] 09 Jul 12:25:53.541 - Accepted ::1:50166
+[2784] 09 Jul 12:42:01.658 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 2784
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[2784] 09 Jul 12:42:01.663 # Server started, Redis version 2.8.12
+[2784] 09 Jul 12:42:01.663 * The server is now ready to accept connections on port 9736
+[2784] 09 Jul 12:42:01.762 - Accepted ::1:50507
+[2784] 09 Jul 12:42:01.763 - 1 clients connected (0 slaves), 970000 bytes in use
+[2784] 09 Jul 12:42:01.773 - Accepted ::1:50508
+[2784] 09 Jul 12:42:01.818 - Accepted ::1:50509
+[2784] 09 Jul 12:42:01.821 - Accepted ::1:50510
+[2784] 09 Jul 12:42:01.823 - Accepted ::1:50511
+[2784] 09 Jul 12:42:02.131 - Accepted ::1:50512
+[2784] 09 Jul 12:42:02.133 - Accepted ::1:50513
+[2784] 09 Jul 12:42:02.170 - Accepted ::1:50514
+[2784] 09 Jul 12:42:02.172 - Accepted ::1:50515
+[2784] 09 Jul 12:42:02.208 - Accepted ::1:50516
+[2784] 09 Jul 12:42:02.242 - Accepted ::1:50517
+[2784] 09 Jul 12:42:05.011 - Accepted ::1:50518
+[2855] 09 Jul 12:42:38.644 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 2855
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[2855] 09 Jul 12:42:38.648 # Server started, Redis version 2.8.12
+[2855] 09 Jul 12:42:38.648 * The server is now ready to accept connections on port 9736
+[2855] 09 Jul 12:42:38.746 - Accepted ::1:50530
+[2855] 09 Jul 12:42:38.747 - 1 clients connected (0 slaves), 970000 bytes in use
+[2855] 09 Jul 12:42:38.754 - Accepted ::1:50531
+[2855] 09 Jul 12:42:38.791 - Accepted ::1:50532
+[2855] 09 Jul 12:42:38.794 - Accepted ::1:50533
+[2855] 09 Jul 12:42:38.796 - Accepted ::1:50534
+[2855] 09 Jul 12:42:38.799 - Accepted ::1:50535
+[2855] 09 Jul 12:42:38.801 - Accepted ::1:50536
+[2855] 09 Jul 12:42:38.832 - Accepted ::1:50537
+[2855] 09 Jul 12:42:38.833 - Accepted ::1:50538
+[2855] 09 Jul 12:42:38.870 - Accepted ::1:50539
+[2855] 09 Jul 12:42:38.906 - Accepted ::1:50540
+[2855] 09 Jul 12:42:38.944 - Accepted ::1:50541
+[2872] 09 Jul 12:42:43.242 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 2872
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[2872] 09 Jul 12:42:43.245 # Server started, Redis version 2.8.12
+[2872] 09 Jul 12:42:43.245 * The server is now ready to accept connections on port 9736
+[2872] 09 Jul 12:42:43.245 - 0 clients connected (0 slaves), 952720 bytes in use
+[2872] 09 Jul 12:42:43.347 - Accepted ::1:50545
+[2872] 09 Jul 12:42:43.355 - Accepted ::1:50546
+[2872] 09 Jul 12:42:43.390 - Accepted ::1:50547
+[2872] 09 Jul 12:42:43.393 - Accepted ::1:50548
+[2872] 09 Jul 12:42:43.394 - Accepted ::1:50549
+[2872] 09 Jul 12:42:43.398 - Accepted ::1:50550
+[2872] 09 Jul 12:42:43.400 - Accepted ::1:50551
+[2872] 09 Jul 12:42:43.433 - Accepted ::1:50552
+[2872] 09 Jul 12:42:43.434 - Accepted ::1:50553
+[2872] 09 Jul 12:42:43.473 - Accepted ::1:50554
+[2872] 09 Jul 12:42:43.504 - Accepted ::1:50555
+[2872] 09 Jul 12:42:43.537 - Accepted ::1:50556
+[2872] 09 Jul 12:42:48.283 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[2872] 09 Jul 12:42:48.283 - 12 clients connected (0 slaves), 1159488 bytes in use
+[2872] 09 Jul 12:42:53.329 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[2872] 09 Jul 12:42:53.330 - 12 clients connected (0 slaves), 1159488 bytes in use
+[2920] 09 Jul 12:44:04.433 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 2920
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[2920] 09 Jul 12:44:04.437 # Server started, Redis version 2.8.12
+[2920] 09 Jul 12:44:04.437 * The server is now ready to accept connections on port 9736
+[2920] 09 Jul 12:44:04.541 - Accepted 127.0.0.1:50584
+[2920] 09 Jul 12:44:04.542 - 1 clients connected (0 slaves), 970000 bytes in use
+[2920] 09 Jul 12:44:04.548 - Accepted ::1:50585
+[2920] 09 Jul 12:44:04.579 - Accepted ::1:50586
+[2920] 09 Jul 12:44:04.583 - Accepted ::1:50587
+[2920] 09 Jul 12:44:04.584 - Accepted ::1:50588
+[2920] 09 Jul 12:44:04.588 - Accepted ::1:50589
+[2920] 09 Jul 12:44:04.589 - Accepted ::1:50590
+[2920] 09 Jul 12:44:04.626 - Accepted ::1:50591
+[2920] 09 Jul 12:44:04.629 - Accepted ::1:50592
+[2920] 09 Jul 12:44:04.666 - Accepted ::1:50593
+[2920] 09 Jul 12:44:04.707 - Accepted ::1:50594
+[2920] 09 Jul 12:44:04.746 - Accepted ::1:50595
+[2920] 09 Jul 12:44:09.589 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[2920] 09 Jul 12:44:09.589 - 12 clients connected (0 slaves), 1159488 bytes in use
+[2920] 09 Jul 12:44:11.134 - Accepted ::1:50597
+[2920] 09 Jul 12:44:14.637 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[2920] 09 Jul 12:44:14.637 - 13 clients connected (0 slaves), 1176784 bytes in use
+[2920] 09 Jul 12:44:19.677 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[2920] 09 Jul 12:44:19.678 - 13 clients connected (0 slaves), 1176784 bytes in use
+[2920] 09 Jul 12:44:24.721 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[2920] 09 Jul 12:44:24.721 - 13 clients connected (0 slaves), 1176784 bytes in use
+[3015] 09 Jul 12:47:03.047 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 3015
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[3015] 09 Jul 12:47:03.055 # Server started, Redis version 2.8.12
+[3015] 09 Jul 12:47:03.055 * The server is now ready to accept connections on port 9736
+[3015] 09 Jul 12:47:03.152 - Accepted ::1:50632
+[3015] 09 Jul 12:47:03.153 - 1 clients connected (0 slaves), 970000 bytes in use
+[3015] 09 Jul 12:47:03.160 - Accepted 127.0.0.1:50633
+[3015] 09 Jul 12:47:03.198 - Accepted ::1:50634
+[3015] 09 Jul 12:47:03.202 - Accepted ::1:50635
+[3015] 09 Jul 12:47:03.203 - Accepted ::1:50636
+[3015] 09 Jul 12:47:03.207 - Accepted ::1:50637
+[3015] 09 Jul 12:47:03.208 - Accepted ::1:50638
+[3015] 09 Jul 12:47:03.241 - Accepted ::1:50639
+[3015] 09 Jul 12:47:03.242 - Accepted ::1:50640
+[3015] 09 Jul 12:47:03.279 - Accepted ::1:50641
+[3015] 09 Jul 12:47:03.312 - Accepted ::1:50642
+[3015] 09 Jul 12:47:03.351 - Accepted ::1:50643
+[3015] 09 Jul 12:47:08.195 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:47:08.196 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:47:13.240 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:47:13.241 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:47:18.289 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:47:18.290 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:47:23.337 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:47:23.337 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:47:28.386 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:47:28.389 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:47:33.430 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:47:33.430 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:47:38.475 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:47:38.476 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:47:43.520 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:47:43.521 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:47:48.566 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:47:48.566 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:47:53.619 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:47:53.622 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:47:58.664 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:47:58.664 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:48:03.709 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:48:03.712 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:48:08.758 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:48:08.758 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:48:13.804 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:48:13.806 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:48:18.848 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3015] 09 Jul 12:48:18.848 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3015] 09 Jul 12:48:21.044 - Accepted ::1:50658
+[3072] 09 Jul 12:48:43.477 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 3072
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[3072] 09 Jul 12:48:43.482 # Server started, Redis version 2.8.12
+[3072] 09 Jul 12:48:43.483 * The server is now ready to accept connections on port 9736
+[3072] 09 Jul 12:48:43.586 - Accepted ::1:50668
+[3072] 09 Jul 12:48:43.587 - 1 clients connected (0 slaves), 970000 bytes in use
+[3072] 09 Jul 12:48:43.600 - Accepted ::1:50669
+[3072] 09 Jul 12:48:43.682 - Accepted ::1:50670
+[3072] 09 Jul 12:48:43.691 - Accepted ::1:50671
+[3072] 09 Jul 12:48:43.693 - Accepted ::1:50672
+[3072] 09 Jul 12:48:43.698 - Accepted ::1:50673
+[3072] 09 Jul 12:48:43.700 - Accepted ::1:50674
+[3072] 09 Jul 12:48:43.737 - Accepted ::1:50675
+[3072] 09 Jul 12:48:43.738 - Accepted ::1:50676
+[3072] 09 Jul 12:48:43.775 - Accepted ::1:50677
+[3072] 09 Jul 12:48:43.814 - Accepted ::1:50678
+[3072] 09 Jul 12:48:43.850 - Accepted ::1:50679
+[3072] 09 Jul 12:48:48.629 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:48:48.629 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:48:53.677 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:48:53.678 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:48:58.725 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:48:58.725 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:03.766 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:03.766 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:08.802 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:08.802 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:13.845 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:13.845 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:18.885 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:18.885 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:23.929 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:23.930 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:28.971 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:28.972 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:34.018 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:34.018 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:39.057 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:39.057 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:44.097 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:44.100 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:49.138 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:49.138 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:54.181 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:54.182 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:49:59.226 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:49:59.227 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:04.279 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:04.282 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:09.317 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:09.317 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:14.361 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:14.364 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:19.411 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:19.411 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:24.454 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:24.455 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:29.496 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:29.496 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:34.541 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:34.541 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:39.595 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:39.596 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:44.644 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:44.644 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:49.687 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:49.688 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:54.730 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:54.730 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:50:59.770 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:50:59.770 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:51:04.813 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:51:04.814 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:51:09.860 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:51:09.860 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:51:14.901 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:51:14.903 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:51:19.938 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:51:19.938 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:51:24.982 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:51:24.987 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:51:30.019 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:51:30.020 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:51:35.053 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:51:35.053 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:51:40.099 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:51:40.101 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:51:45.140 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:51:45.140 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:51:50.193 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:51:50.196 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:51:55.232 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:51:55.233 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:00.274 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:00.274 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:05.309 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:05.311 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:10.354 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:10.355 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:15.388 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:15.390 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:20.427 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:20.427 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:25.480 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:25.480 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:30.529 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:30.532 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:35.572 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:35.572 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:40.616 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:40.617 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:45.664 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:45.666 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:50.715 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:50.715 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:52:55.758 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:52:55.758 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:53:00.807 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:00.809 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:53:05.853 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:05.854 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:53:10.897 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:10.898 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:53:15.940 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:15.940 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:53:20.976 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:20.977 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:53:26.007 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:26.008 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:53:31.050 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:31.053 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:53:36.095 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:36.095 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:53:41.146 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:41.147 - 12 clients connected (0 slaves), 1159488 bytes in use
+[3072] 09 Jul 12:53:44.073 - Closing idle client
+[3072] 09 Jul 12:53:44.076 - Closing idle client
+[3072] 09 Jul 12:53:44.076 - Closing idle client
+[3072] 09 Jul 12:53:44.076 - Closing idle client
+[3072] 09 Jul 12:53:44.076 - Closing idle client
+[3072] 09 Jul 12:53:44.077 - Closing idle client
+[3072] 09 Jul 12:53:44.077 - Closing idle client
+[3072] 09 Jul 12:53:44.078 - Closing idle client
+[3072] 09 Jul 12:53:44.078 - Closing idle client
+[3072] 09 Jul 12:53:44.078 - Closing idle client
+[3072] 09 Jul 12:53:44.078 - Closing idle client
+[3072] 09 Jul 12:53:44.078 - Closing idle client
+[3072] 09 Jul 12:53:46.200 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:46.201 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:53:51.240 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:51.241 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:53:56.284 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:53:56.285 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:01.331 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:01.331 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:06.369 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:06.369 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:11.411 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:11.413 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:16.461 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:16.461 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:21.509 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:21.512 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:26.550 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:26.551 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:31.594 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:31.595 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:36.638 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:36.638 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:41.680 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:41.680 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:46.732 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:46.732 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:51.774 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:51.777 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:54:56.823 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:54:56.823 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:01.861 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:01.864 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:06.912 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:06.912 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:11.954 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:11.957 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:16.996 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:16.997 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:22.034 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:22.035 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:27.085 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:27.087 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:32.138 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:32.139 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:37.185 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:37.196 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:42.242 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:42.242 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:47.281 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:47.281 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:52.330 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:52.333 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:55:57.376 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:55:57.376 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:02.422 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:02.425 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:07.475 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:07.476 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:12.524 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:12.524 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:17.574 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:17.574 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:22.628 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:22.628 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:27.675 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:27.676 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:32.723 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:32.725 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:37.765 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:37.766 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:42.807 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:42.808 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:47.852 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:47.854 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:52.893 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:52.894 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:56:57.942 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:56:57.942 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:02.987 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:02.989 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:08.034 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:08.034 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:13.080 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:13.083 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:18.126 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:18.127 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:23.166 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:23.168 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:28.199 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:28.200 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:33.236 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:33.239 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:38.272 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:38.272 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:43.314 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:43.316 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:48.360 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:48.360 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:53.390 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:53.392 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:57:58.426 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:57:58.426 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:58:03.464 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:58:03.467 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:58:08.512 - DB 0: 1 keys (0 volatile) in 4 slots HT.
+[3072] 09 Jul 12:58:08.514 - 0 clients connected (0 slaves), 951920 bytes in use
+[3072] 09 Jul 12:58:10.573 - Accepted ::1:50848
+[3194] 09 Jul 12:58:27.446 * Increased maximum number of open files to 10032 (it was originally set to 256).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 2.8.12 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in stand alone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 9736
+ |    `-._   `._    /     _.-'    |     PID: 3194
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+[3194] 09 Jul 12:58:27.450 # Server started, Redis version 2.8.12
+[3194] 09 Jul 12:58:27.450 * The server is now ready to accept connections on port 9736
+[3194] 09 Jul 12:58:27.550 - Accepted ::1:50855
+[3194] 09 Jul 12:58:27.551 - 1 clients connected (0 slaves), 970000 bytes in use
+[3194] 09 Jul 12:58:27.561 - Accepted ::1:50856
+[3194] 09 Jul 12:58:27.598 - Accepted ::1:50857
+[3194] 09 Jul 12:58:27.602 - Accepted 127.0.0.1:50858
+[3194] 09 Jul 12:58:27.604 - Accepted ::1:50859
+[3194] 09 Jul 12:58:27.608 - Accepted ::1:50860
+[3194] 09 Jul 12:58:27.610 - Accepted ::1:50861
+[3194] 09 Jul 12:58:27.643 - Accepted ::1:50862
+[3194] 09 Jul 12:58:27.645 - Accepted ::1:50863
+[3194] 09 Jul 12:58:27.680 - Accepted ::1:50864
+[3194] 09 Jul 12:58:27.717 - Accepted ::1:50865
+[3194] 09 Jul 12:58:27.758 - Accepted ::1:50866
+[3194] 09 Jul 12:58:27.823 - Accepted ::1:50867
