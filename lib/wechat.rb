@@ -30,34 +30,33 @@ module Wechat
         redis.set @app_id, hash.to_json
         @access_token = JSON.parse(redis.get(@app_id))['access_token']
       else
-        token_time_valid = (Time.now.to_i - JSON.parse(redis.get(@app_id))['time_stamp'] <= JSON.parse(redis.get(@app_id))['expires_in'] - 300)
-
+        token_expiry_time = JSON.parse(redis.get(@app_id))['time_stamp'] + JSON.parse(redis.get(@app_id))['expires_in']
+        token_is_valid = token_expiry_time > Time.now.to_i + 300
         #if we have more than 5 minutes left on the clock.
         #return cached token and do nothing.
-        if token_time_valid
+        if token_is_valid
           @access_token = JSON.parse(redis.get(@app_id))['access_token']
         else
-          #if the access token has expired get a new one.
-          if JSON.parse(redis.get(@app_id))['time_stamp'] + JSON.parse(redis.get(@app_id))['expires_in'] <= Time.now.to_i
+          #if the token has less than five minutes on it....we can use the current token and get a new one.
+          if token_expiry_time > Time.now.to_i && token_expiry_time <= Time.now.to_i + 300
+            @access_token = JSON.parse(redis.get(@app_id))['access_token']
             unless JSON.parse(redis.get(@app_id))['new_token_requested']
               get_new_access_token redis
-              @access_token = JSON.parse(redis.get(@app_id))['access_token']
-            else #if a new request comes in and we have to wait for the new token.
+            end
+          #if the access token has expired get a new one.
+          else
+            unless JSON.parse(redis.get(@app_id))['new_token_requested']
+              @access_token = get_new_access_token redis
+            else #if a new request comes in and we have it wait for the new token.
               while JSON.parse(redis.get(@app_id))['new_token_requested']  do
                 puts("waiting for new token" )
               end
               @access_token = JSON.parse(redis.get(@app_id))['access_token']
             end
-          else
-           #if the token has less than five minutes on it....we can use the current oken and get a new one.
-           @access_token = JSON.parse(redis.get(@app_id))['access_token']
-           unless JSON.parse(redis.get(@app_id))['new_token_requested']
-             get_new_access_token redis
-           end
-         end
-       end
-    end
-    @access_token
+          end
+        end
+      end
+      @access_token
     end
 
     def get_new_access_token redis
@@ -67,6 +66,7 @@ module Wechat
       response = HTTParty.get("#{ACCESS_TOKEN_URL}?grant_type=client_credential&appid=#{@app_id}&secret=#{@secret}", :debug_output => $stdout)
       hash = JSON.parse(response.body).merge(Hash['time_stamp',Time.now.to_i, 'new_token_requested', false])
       redis.set @app_id, hash.to_json
+      JSON.parse(redis.get(@app_id))['access_token']
     end
   end
 
@@ -80,7 +80,6 @@ module Wechat
       @customer_token = customer_token
       @access_token = AccessToken.new(app_id, secret).access_token
     end
-
 
     ##
     # When a message is sent, it is posted to the server. Upon verifying the
