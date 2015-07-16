@@ -38,14 +38,14 @@ EOS
 
   context 'can authenticate to receive a new message' do
     it do
-      expect(we_chat_client.access_token).to eql('token_within_client')
+      expect(we_chat_client.access_token).to eql(nil)
       expect(we_chat_client.authenticate(nonce, signature, timestamp)).to be(true)
     end
   end
 
   context 'can receive message' do
     it do
-      expect(we_chat_client.access_token).to eql('token_within_client')
+      expect(we_chat_client.access_token).to eql(nil)
       expect(we_chat_client.receive_message(received_message)['ToUserName']).to eq('gh_283218b72e')
       expect(we_chat_client.receive_message(received_message)['FromUserName']).to eq('odmSit8iRc_AdaTrWoEGabw4nVd8')
       expect(we_chat_client.receive_message(received_message)['MsgType']).to eq('text')
@@ -56,7 +56,9 @@ EOS
 
   context 'can send a text message' do
     it do
+      expect(we_chat_client.access_token).to eql(nil)
       expect(we_chat_client.send_message(to_user,'text',message)).to be(true)
+      expect(we_chat_client.access_token).to eql('token_within_client')
     end
   end
 

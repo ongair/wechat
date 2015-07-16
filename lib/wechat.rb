@@ -71,14 +71,14 @@ module Wechat
   end
 
   class Client
-    attr_accessor :access_token, :customer_token
+    attr_accessor :app_id, :secret, :access_token, :customer_token
     SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
 
     def initialize(app_id, secret, customer_token)
       @app_id = app_id
       @secret = secret
       @customer_token = customer_token
-      @access_token = AccessToken.new(app_id, secret).access_token
+      @access_token = nil
     end
 
     ##
@@ -128,6 +128,7 @@ module Wechat
     # @param content [String] The message or media_id
     # @return [Boolean] if message was sent successfully
     def send_message to, msg_type, content
+      @access_token = AccessToken.new(app_id, secret).access_token
       request = case msg_type
       when 'text'
         { touser: to, msgtype: msg_type, text: { content: content }}.to_json
