@@ -158,7 +158,11 @@ module Wechat
       def send request
         url = "#{SEND_URL}#{@access_token}"
         response = HTTParty.post(url, body: request, :debug_output => $stdout)
-        JSON.parse(response.body)["errmsg"] == "ok"
+        if response
+          return response
+        else
+          raise "Error: WeChat Message not sent!"
+        end
       end
   end
 

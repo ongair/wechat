@@ -17,23 +17,9 @@ EOS
   let(:signature){Digest::SHA1.hexdigest [customer_token, timestamp, nonce].sort.join}
   let(:access_token){we_chat_client.access_token}
 
-
   before do
     stub_request(:get, "#{Wechat::AccessToken::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
       to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
-
-    stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client").
-      with(:body => {touser:"12345",msgtype:"text",text:{content:"Hello world"}}.to_json ).
-      to_return(:status => 200, :body => { errmsg: "ok" }.to_json, :headers => {})
-
-    stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client").
-      with(:body => {touser:"12345",msgtype:"image",image:{media_id:"MEDIA_ID"}}.to_json ).
-      to_return(:status => 200, :body => { errmsg: "ok" }.to_json, :headers => {})
-
-    stub_request(:post, "#{Wechat::Client::SEND_URL}token").
-      with(:body => { touser: "12345", msgtype: "news", news: { articles: [{ title: "Hello world", description: "description", picurl: "picurl" }] } }.to_json ).
-      to_return(:status => 200, :body => { errmsg: "ok" }.to_json, :headers => {})
-
   end
 
   context 'can authenticate to receive a new message' do
@@ -54,17 +40,27 @@ EOS
     end
   end
 
-  context 'can send a text message' do
+  context 'can send a message' do
     it do
       expect(we_chat_client.access_token).to eql(nil)
+
+      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
+        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
+        debug_output: $stdout} ).and_return(true)
+
       expect(we_chat_client.send_message(to_user,'text',message)).to be(true)
       expect(we_chat_client.access_token).to eql('token_within_client')
     end
   end
 
-  context 'can send a image message' do
+  context 'raises error if message refuses to send' do
     it do
-      expect(we_chat_client.send_message(to_user,'image',media_id)).to be(true)
+      expect(we_chat_client.access_token).to eql(nil)
+      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
+        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
+        debug_output: $stdout} ).and_return(false)
+
+      expect { we_chat_client.send_message(to_user,'text',message) }.to raise_error(RuntimeError)
     end
   end
 end
