@@ -73,6 +73,7 @@ module Wechat
   class Client
     attr_accessor :app_id, :secret, :access_token, :customer_token
     SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
+    PROFILE_URL = 'https://api.wechat.com/cgi-bin/user/info?'    
 
     def initialize(app_id, secret, customer_token)
       @app_id = app_id
@@ -154,6 +155,16 @@ module Wechat
       send_multiple_rich_messages to, [{ title: title, description: description, picurl: pic_url }]
     end
 
+    def get_profile user_id, lang="en_US"
+      url = "access_token=#{@access_token}&openid=#{user_id}&lang=#{lang}"
+      response = HTTParty.get(url, :debug_output => $stdout)
+      if response
+        return response
+      else
+        raise 'Error: Unable to retreive user profile'
+      end
+    end
+
     private
       def send request
         url = "#{SEND_URL}#{@access_token}"
@@ -165,39 +176,4 @@ module Wechat
         end
       end
   end
-
-  # class Notification
- #    TEXT_NOTIFICATION = 'text'
- #    EVENT = 'event'
- #    CLICK = 'CLICK'
- #
- #    attr_accessor :notification_type, :content, :from, :created_at, :event_key, :event
- #
- #    def initialize(xml_string)
- #      parse(xml_string)
- #    end
- #
- #    def parse(xml)
- #      doc = Nokogiri::XML(xml)
- #      to = doc.xpath("//ToUserName").first.content
- #      @from = doc.xpath("//FromUserName").first.content
- #      @created_at = Time.at(doc.xpath("//CreateTime").first.content.to_i)
- #      @notification_type = doc.xpath("//MsgType").first.content
- #      @content = doc.xpath("//Content").first.content if !doc.xpath("//Content").first.nil?
- #      @event_key = doc.xpath("//EventKey").first.content if !doc.xpath("//EventKey").first.nil?
- #      @event = doc.xpath("//Event").first.content if !doc.xpath("//Event").first.nil?
- #    end
- #
- #    def is_message?
- #      @notification_type == TEXT_NOTIFICATION
- #    end
- #
- #    def is_event?
- #      @notification_type == EVENT
- #    end
- #
- #    def is_click?
- #      @event == CLICK
- #    end
- #  end
 end

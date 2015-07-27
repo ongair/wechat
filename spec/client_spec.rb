@@ -63,4 +63,5 @@ EOS
       expect { we_chat_client.send_message(to_user,'text',message) }.to raise_error(RuntimeError)
     end
   end
+
 end
