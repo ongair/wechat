@@ -73,7 +73,7 @@ module Wechat
   class Client
     attr_accessor :app_id, :secret, :access_token, :customer_token
     SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
-    PROFILE_URL = 'https://api.wechat.com/cgi-bin/user/info?'    
+    PROFILE_URL = 'https://api.wechat.com/cgi-bin/user/info?'
 
     def initialize(app_id, secret, customer_token)
       @app_id = app_id
@@ -119,8 +119,12 @@ module Wechat
         end
         out << hash
       end
-      out.first
+
+      message = out.first
+      name = get_profile(message['FromUserName'])['nickname']
+      message.merge(Hash['Name', name])
     end
+
 
     # Sends a message
     #
@@ -155,19 +159,27 @@ module Wechat
       send_multiple_rich_messages to, [{ title: title, description: description, picurl: pic_url }]
     end
 
+
+    # Get's the WeChat user's profile
+    #
     # {
-    #   "subscribe": 1, 
-    #   "openid": "o6_bmjrPTlm6_2sgVt7hMZOPfL2M", 
-    #   "nickname": "Band", 
-    #   "sex": 1, 
-    #   "language": "zh_CN", 
-    #   "city": "Guangzhou", 
-    #   "province": "Guangdong", 
-    #   "country": "China", 
-    #   "headimgurl":    "http://wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/0", 
+    #   "subscribe": 1,
+    #   "openid": "o6_bmjrPTlm6_2sgVt7hMZOPfL2M",
+    #   "nickname": "Band",
+    #   "sex": 1,
+    #   "language": "zh_CN",
+    #   "city": "Guangzhou",
+    #   "province": "Guangdong",
+    #   "country": "China",
+    #   "headimgurl":    "http://wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/0",
     #   "subscribe_time": 1382694957
     # }
+    #
+    # @param to [OpenId] Unique user's ID
+    # @return [String] user's name
+
     def get_profile user_id, lang="en_US"
+      @access_token = AccessToken.new(app_id, secret).access_token
       url = "#{PROFILE_URL}access_token=#{get_token}&openid=#{user_id}&lang=#{lang}"
       response = HTTParty.get(url, :debug_output => $stdout)
       if response
