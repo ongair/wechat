@@ -48,7 +48,6 @@ EOS
   context 'can receive message' do
     it do
       expect(we_chat_client.access_token).to eql(nil)
-      expect(we_chat_client.receive_message(received_message)['Name']).to eq('nickname')
       expect(we_chat_client.receive_message(received_message)['ToUserName']).to eq('gh_283218b72e')
       expect(we_chat_client.receive_message(received_message)['FromUserName']).to eq('odmSit8iRc_AdaTrWoEGabw4nVd8')
       expect(we_chat_client.receive_message(received_message)['MsgType']).to eq('text')

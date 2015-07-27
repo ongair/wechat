@@ -120,9 +120,7 @@ module Wechat
         out << hash
       end
 
-      message = out.first
-      name = get_profile(message['FromUserName'])['nickname']
-      message.merge(Hash['Name', name])
+      out.first
     end
 
 
@@ -177,7 +175,6 @@ module Wechat
     #
     # @param to [OpenId] Unique user's ID
     # @return [String] user's name
-
     def get_profile user_id, lang="en_US"
       @access_token = AccessToken.new(app_id, secret).access_token
       url = "#{PROFILE_URL}access_token=#{get_token}&openid=#{user_id}&lang=#{lang}"
