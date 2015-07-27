@@ -155,8 +155,20 @@ module Wechat
       send_multiple_rich_messages to, [{ title: title, description: description, picurl: pic_url }]
     end
 
+    # {
+    #   "subscribe": 1, 
+    #   "openid": "o6_bmjrPTlm6_2sgVt7hMZOPfL2M", 
+    #   "nickname": "Band", 
+    #   "sex": 1, 
+    #   "language": "zh_CN", 
+    #   "city": "Guangzhou", 
+    #   "province": "Guangdong", 
+    #   "country": "China", 
+    #   "headimgurl":    "http://wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/0", 
+    #   "subscribe_time": 1382694957
+    # }
     def get_profile user_id, lang="en_US"
-      url = "#{PROFILE_URL}access_token=#{@access_token}&openid=#{user_id}&lang=#{lang}"
+      url = "#{PROFILE_URL}access_token=#{get_token}&openid=#{user_id}&lang=#{lang}"
       response = HTTParty.get(url, :debug_output => $stdout)
       if response
         return response
@@ -174,6 +186,10 @@ module Wechat
         else
           raise "Error: WeChat Message not sent!"
         end
+      end
+
+      def get_token
+        AccessToken.new(app_id, secret).access_token
       end
   end
 end
