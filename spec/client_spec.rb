@@ -18,24 +18,10 @@ EOS
   let(:access_token){we_chat_client.access_token}
 
   before do
-    profile_hash = {
-      "subscribe"=> 1,
-      "openid"=> "o6_bmjrPTlm6_2sgVt7hMZOPfL2M",
-      "nickname"=> "Band",
-      "sex"=> 1,
-      "language"=> "zh_CN",
-      "city"=> "Guangzhou",
-      "province"=> "Guangdong",
-      "country"=> "China",
-      "headimgurl"=>    "http=>//wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/0",
-      "subscribe_time"=> 1382694957
-    }
-
     stub_request(:get, "#{Wechat::AccessToken::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
       to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
 
-      stub_request(:get, "https://api.wechat.com/cgi-bin/user/info?access_token=token_within_client&lang=en_US&openid=odmSit8iRc_AdaTrWoEGabw4nVd8").
-        to_return(:status => 200, :body => profile_hash.to_json, :headers => {})
+
   end
 
   context 'can authenticate to receive a new message' do
