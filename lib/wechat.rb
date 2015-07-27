@@ -156,7 +156,7 @@ module Wechat
     end
 
     def get_profile user_id, lang="en_US"
-      url = "access_token=#{@access_token}&openid=#{user_id}&lang=#{lang}"
+      url = "#{PROFILE_URL}access_token=#{@access_token}&openid=#{user_id}&lang=#{lang}"
       response = HTTParty.get(url, :debug_output => $stdout)
       if response
         return response
