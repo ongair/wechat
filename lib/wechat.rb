@@ -24,7 +24,7 @@ module Wechat
     #
     def access_token
       redis = Redis.new
-      if redis.get(@app_id).nil?
+      if redis.get(@app_id).blank?
         response = HTTParty.get("#{ACCESS_TOKEN_URL}?grant_type=client_credential&appid=#{@app_id}&secret=#{@secret}", :debug_output => $stdout)
         hash = JSON.parse(response.body).merge(Hash['time_stamp',Time.now.to_i, 'new_token_requested', false])
         redis.set @app_id, hash.to_json
