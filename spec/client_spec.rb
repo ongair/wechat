@@ -55,6 +55,24 @@ EOS
     end
   end
 
+  context 'can send an image' do
+    it do
+      file = File.open('spec/files/wechat.jpg')
+
+      response = nil
+      
+      expect(response).to receive(:body).and_return({ media_id: '12345' }.to_json)
+      expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
+        {body: { type: 'Image', media: file }, debug_output: $stdout}).and_return(response)
+
+      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
+        {:body => "{\"touser\":\"12345\",\"msgtype\":\"image\",\"image\":{\"media_id\":\"12345\"}}",
+        debug_output: $stdout} ).and_return(true)
+
+      expect(we_chat_client.send_image(to_user, file)).to be(true)
+    end
+  end
+
   context 'can send a multimedia message' do
     it do
       expect(we_chat_client.access_token).to eql(nil)

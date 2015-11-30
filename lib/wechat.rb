@@ -1,6 +1,7 @@
 require 'wechat/version'
 require 'nokogiri'
 require 'httparty'
+require 'httmultiparty'
 require 'json'
 require 'rack'
 require 'rack/session/redis'
@@ -74,6 +75,7 @@ module Wechat
     attr_accessor :app_id, :secret, :access_token, :customer_token
     SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
     PROFILE_URL = 'https://api.wechat.com/cgi-bin/user/info?'
+    UPLOAD_URL = 'http://file.api.wechat.com/cgi-bin/media/upload?access_token='
 
     def initialize(app_id, secret, customer_token)
       @app_id = app_id
@@ -139,6 +141,25 @@ module Wechat
         { touser: to, msgtype: msg_type, image: { media_id: content }}.to_json
       end
       send request
+    end
+
+    # Sends an image message
+    # 
+    # @param to [String] The recipient of the message
+    # @param file [File] The file to be sent
+    # @return [String] the media id
+    def send_image to, file
+      @access_token = AccessToken.new(app_id, secret).access_token
+
+      # response = HTTParty.post(url, body: request, :debug_output => $stdout)
+      media_id = upload_image(file)
+
+      return send_message to, 'image', media_id
+    end
+
+    def upload_image file
+      response = HTTMultiParty.post("#{UPLOAD_URL}#{@access_token}", body: { type: 'Image', media: file }, debug_output: $stdout)      
+      media_id = JSON.parse(response.body)['media_id']
     end
 
     def send_multiple_rich_messages to, messages
