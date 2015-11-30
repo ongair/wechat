@@ -24,7 +24,7 @@ module Wechat
     #
     def access_token
       redis = Redis.new
-      if redis.get(@app_id).blank?
+      if redis.get(@app_id).nil? || redis.get(@app_id).empty?
         response = HTTParty.get("#{ACCESS_TOKEN_URL}?grant_type=client_credential&appid=#{@app_id}&secret=#{@secret}", :debug_output => $stdout)
         hash = JSON.parse(response.body).merge(Hash['time_stamp',Time.now.to_i, 'new_token_requested', false])
         redis.set @app_id, hash.to_json
@@ -142,6 +142,7 @@ module Wechat
     end
 
     def send_multiple_rich_messages to, messages
+      @access_token = AccessToken.new(app_id, secret).access_token
       articles = []
       messages.each do |message|
         articles << { title: message[:title], description: message[:description], picurl: message[:picurl] }
@@ -150,10 +151,15 @@ module Wechat
       send request
     end
 
+    # Sends a rich media message
+    #
+    # @param to [String] The recipient of the message
+    # @param title [String] The title of the message
+    # @param description [String] Description
+    # @param pic_url [String] The url of the multimedia
+    #
+    # @return [Boolean] if message was sent successfully
     def send_rich_media_message to, title, description, pic_url
-
-      # request = { touser: "#{to}", msgtype: "news", news: { articles: [{ title: "#{title}", description: "#{description}", picurl: "picurl" }] }}.to_json
-      # send request
       send_multiple_rich_messages to, [{ title: title, description: description, picurl: pic_url }]
     end
 
@@ -193,6 +199,7 @@ module Wechat
         if response
           return response
         else
+          # {"errcode"=>45015, "errmsg"=>"response out of time limit or subscription is canceled hint: [iJ012a0633age6]"}
           raise "Error: WeChat Message not sent!"
         end
       end

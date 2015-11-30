@@ -55,6 +55,20 @@ EOS
     end
   end
 
+  context 'can send a multimedia message' do
+    it do
+      expect(we_chat_client.access_token).to eql(nil)
+      url = 'www.google.com/images/branding/googlelogo/1x/googlelogo_color_150x54dp.png'
+
+      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
+        { body: { touser: '12345', msgtype: 'news', news: { articles: [{ title: 'Attachment', description: 'See Attachment', picurl: url }]} }.to_json,
+        debug_output: $stdout} ).and_return(true)
+
+      expect(we_chat_client.send_rich_media_message(to_user,'Attachment', 'See Attachment', url)).to be(true)
+
+    end
+  end
+
   context 'raises error if message refuses to send' do
     it do
       expect(we_chat_client.access_token).to eql(nil)

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wechat (0.0.1.19)
+    wechat (0.0.1.21)
       httparty
       nokogiri (= 1.6.1)
       redis-rack
