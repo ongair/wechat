@@ -59,7 +59,7 @@ EOS
     it do
       file = File.open('spec/files/wechat.jpg')
 
-      response = nil
+      response = {}
       
       expect(response).to receive(:body).and_return({ media_id: '12345' }.to_json)
       expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
@@ -70,6 +70,13 @@ EOS
         debug_output: $stdout} ).and_return(true)
 
       expect(we_chat_client.send_image(to_user, file)).to be(true)
+    end
+  end
+
+  context 'can get a file attachment url' do
+    it do
+      url = "#{Wechat::Client::FILE_URL}token_within_client&media_id=12345"
+      expect(we_chat_client.get_media_url('12345')).to eql(url)
     end
   end
 

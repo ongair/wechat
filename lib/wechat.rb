@@ -76,6 +76,7 @@ module Wechat
     SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
     PROFILE_URL = 'https://api.wechat.com/cgi-bin/user/info?'
     UPLOAD_URL = 'http://file.api.wechat.com/cgi-bin/media/upload?access_token='
+    FILE_URL = 'http://file.api.wechat.com/cgi-bin/media/get?access_token='
 
     def initialize(app_id, secret, customer_token)
       @app_id = app_id
@@ -155,6 +156,16 @@ module Wechat
       media_id = upload_image(file)
 
       return send_message to, 'image', media_id
+    end
+
+    # Get the url for an attachment
+    #
+    # @param media_id [String] the id of the media file
+    #
+    # @return [String] the url
+    def get_media_url media_id
+      access_token = AccessToken.new(app_id, secret).access_token
+      return "#{FILE_URL}#{access_token}&media_id=#{media_id}"
     end
 
     def upload_image file
