@@ -72,18 +72,30 @@ module Wechat
   end
 
   class Client
-    attr_accessor :app_id, :secret, :access_token, :customer_token
+    attr_accessor :app_id, :secret, :access_token, :customer_token, :validate
     SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
     PROFILE_URL = 'https://api.wechat.com/cgi-bin/user/info?'
     UPLOAD_URL = 'http://file.api.wechat.com/cgi-bin/media/upload?access_token='
     FILE_URL = 'http://file.api.wechat.com/cgi-bin/media/get?access_token='
 
-    def initialize(app_id, secret, customer_token)
+
+
+    #
+    # Initialize a wechat client
+    #
+    # @param [String] app_id The id of the application
+    # @param [String] secret Secret key
+    # @param [String] customer_token Encryption token
+    # @param [Boolean] validate Whether or not to validate the request
+    #  
+    def initialize(app_id, secret, customer_token, validate=true)
       @app_id = app_id
       @secret = secret
       @customer_token = customer_token
       @access_token = nil
+      @validate = validate
     end
+
 
     ##
     # When a message is sent, it is posted to the server. Upon verifying the
@@ -100,8 +112,11 @@ module Wechat
       check_str = array.join
 
       digest = Digest::SHA1.hexdigest check_str
-      # digest == signature
-      digest == signature
+      if validate
+        return digest == signature
+      else
+        return true
+      end
     end
 
     # When developers try to authenticate a message

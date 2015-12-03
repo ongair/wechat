@@ -28,6 +28,14 @@ EOS
     it do
       expect(we_chat_client.access_token).to eql(nil)
       expect(we_chat_client.authenticate(nonce, signature, timestamp)).to be(true)
+      expect(we_chat_client.authenticate("nonce", signature, timestamp)).to be(false)
+    end
+  end
+
+  context 'Skip authentication if set to false' do
+    it do
+      client = Wechat::Client.new('Chinese', SecureRandom.hex, SecureRandom.hex, false)
+      expect(client.authenticate("blah", "blah blah", "blah blah blah")).to be(true)
     end
   end
 
