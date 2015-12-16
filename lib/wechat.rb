@@ -50,7 +50,7 @@ module Wechat
               @access_token = get_new_access_token redis
             else #if a new request comes in and we have it wait for the new token.
               while JSON.parse(redis.get(@app_id))['new_token_requested']  do
-                puts("waiting for new token" )
+                puts("#{@app_id} - waiting for new token" )
               end
               @access_token = JSON.parse(redis.get(@app_id))['access_token']
             end
