@@ -4,6 +4,21 @@ describe Wechat::Client do
   received_message = <<-EOS
 <xml><ToUserName><![CDATA[gh_283218b72e]]></ToUserName><FromUserName><![CDATA[odmSit8iRc_AdaTrWoEGabw4nVd8]]></FromUserName><CreateTime>1436349944</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[Hi]]></Content><MsgId>6169076035298417306</MsgId></xml>
 EOS
+
+  location_message = <<-EOS
+  <xml>
+    <ToUserName><![CDATA[toUser]]></ToUserName>
+    <FromUserName><![CDATA[fromUser]]></FromUserName>
+    <CreateTime>1351776360</CreateTime>
+    <MsgType><![CDATA[location]]></MsgType>
+    <Location_X>23.134521</Location_X>
+    <Location_Y>113.358803</Location_Y>
+    <Scale>20</Scale>
+    <Label><![CDATA[Location]]></Label>
+    <MsgId>1234567890123456</MsgId>
+  </xml>
+  EOS
+
   let(:message){'Hello world'}
   let(:media_id){'MEDIA_ID'}
   let(:app_id){'app_id'}
@@ -47,6 +62,15 @@ EOS
       expect(we_chat_client.receive_message(received_message)['MsgType']).to eq('text')
       expect(we_chat_client.receive_message(received_message)['Content']).to eq('Hi')
       expect(we_chat_client.receive_message(received_message)['MsgId']).to eq('6169076035298417306')
+    end
+  end
+
+  context 'can receive a location' do
+    it do
+      expect(we_chat_client.receive_message(location_message)['MsgType']).to eq('location')    
+      expect(we_chat_client.receive_message(location_message)['Location_X']).to eq('23.134521')    
+      expect(we_chat_client.receive_message(location_message)['Location_X']).to eq('23.134521')    
+      expect(we_chat_client.receive_message(location_message)['Scale']).to eq('20')    
     end
   end
 
