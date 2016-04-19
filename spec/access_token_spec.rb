@@ -18,32 +18,12 @@ describe Wechat::AccessToken do
       expect(subject.access_token).to eql('token')
       expect(JSON.parse(redis.get(app_id))['access_token']).to eql('token')
       expect(JSON.parse(redis.get(app_id))['expires_in']).to eql(7200)
-      expect(JSON.parse(redis.get(app_id))['new_token_requested']).to eql(false)
    end
   end
 
-  describe 'if token is valid for more than 5 minutes' do
+  describe 'if token is valid for less than 1 minute' do
     before do
-      hash = Hash['access_token','token1','expires_in',7200, 'time_stamp', Time.now.to_i, 'new_token_requested', false]
-      redis.set app_id, hash.to_json
-    end
-
-    context 'return a cached access_token' do
-      subject {
-        Wechat::AccessToken.new(app_id, secret)
-      }
-      it do
-        expect(subject.access_token).to eql('token1')
-        expect(JSON.parse(redis.get(app_id))['access_token']).to eql('token1')
-        expect(JSON.parse(redis.get(app_id))['expires_in']).to eql(7200)
-        expect(JSON.parse(redis.get(app_id))['new_token_requested']).to eql(false)
-     end
-    end
-  end
-
-  describe 'if token is valid for less than 5 minutes' do
-    before do
-      hash = Hash['access_token','token1','expires_in',7200, 'time_stamp', (Time.now - 6960).to_i, 'new_token_requested', false]
+      hash = Hash['access_token','token1','expires_in',7200, 'time_stamp', (Time.now - 7141).to_i]
       redis.set app_id, hash.to_json
     end
 
@@ -53,10 +33,9 @@ describe Wechat::AccessToken do
       }
 
       it do
-        expect(subject.access_token).to eql('token1') #old access_token
+        expect(subject.access_token).to eql('token')
         expect(JSON.parse(redis.get(app_id))['access_token']).to eql('token') #new access_token
         expect(JSON.parse(redis.get(app_id))['expires_in']).to eql(7200)
-        expect(JSON.parse(redis.get(app_id))['new_token_requested']).to eql(false)
      end
     end
   end
@@ -75,7 +54,6 @@ describe Wechat::AccessToken do
         expect(subject.access_token).to eql('token')
         expect(JSON.parse(redis.get(app_id))['access_token']).to eql('token')
         expect(JSON.parse(redis.get(app_id))['expires_in']).to eql(7200)
-        expect(JSON.parse(redis.get(app_id))['new_token_requested']).to eql(false)
      end
     end
   end
