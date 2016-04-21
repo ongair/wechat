@@ -26,46 +26,24 @@ module Wechat
     def access_token
       redis = Redis.new
       if redis.get(@app_id).nil? || redis.get(@app_id).empty?
-        response = HTTParty.get("#{ACCESS_TOKEN_URL}?grant_type=client_credential&appid=#{@app_id}&secret=#{@secret}", :debug_output => $stdout)
-        hash = JSON.parse(response.body).merge(Hash['time_stamp',Time.now.to_i, 'new_token_requested', false])
-        redis.set @app_id, hash.to_json
-        @access_token = JSON.parse(redis.get(@app_id))['access_token']
+        @access_token = get_new_access_token redis
       else
         token_expiry_time = JSON.parse(redis.get(@app_id))['time_stamp'] + JSON.parse(redis.get(@app_id))['expires_in']
-        token_is_valid = token_expiry_time > Time.now.to_i + 300
-        #if we have more than 5 minutes left on the clock.
+        token_is_valid = token_expiry_time > Time.now.to_i + 60
+        #if we have more than 1 minutes left on the clock.
         #return cached token and do nothing.
         if token_is_valid
           @access_token = JSON.parse(redis.get(@app_id))['access_token']
         else
-          #if the token has less than five minutes on it....we can use the current token and get a new one.
-          if token_expiry_time > Time.now.to_i && token_expiry_time <= Time.now.to_i + 300
-            @access_token = JSON.parse(redis.get(@app_id))['access_token']
-            unless JSON.parse(redis.get(@app_id))['new_token_requested']
-              get_new_access_token redis
-            end
-          #if the access token has expired get a new one.
-          else
-            unless JSON.parse(redis.get(@app_id))['new_token_requested']
-              @access_token = get_new_access_token redis
-            else #if a new request comes in and we have it wait for the new token.
-              while JSON.parse(redis.get(@app_id))['new_token_requested']  do
-                puts("#{@app_id} - waiting for new token" )
-              end
-              @access_token = JSON.parse(redis.get(@app_id))['access_token']
-            end
-          end
+          @access_token = get_new_access_token redis
         end
       end
       @access_token
     end
 
     def get_new_access_token redis
-      time_stamp = JSON.parse(redis.get(@app_id))['time_stamp']
-      hash = Hash['access_token',JSON.parse(redis.get(@app_id))['access_token'],'expires_in',7200, 'time_stamp', time_stamp, 'new_token_requested', true]
-      redis.set @app_id, hash.to_json
       response = HTTParty.get("#{ACCESS_TOKEN_URL}?grant_type=client_credential&appid=#{@app_id}&secret=#{@secret}", :debug_output => $stdout)
-      hash = JSON.parse(response.body).merge(Hash['time_stamp',Time.now.to_i, 'new_token_requested', false])
+      hash = JSON.parse(response.body).merge(Hash['time_stamp',Time.now.to_i])
       redis.set @app_id, hash.to_json
       JSON.parse(redis.get(@app_id))['access_token']
     end
@@ -87,7 +65,7 @@ module Wechat
     # @param [String] secret Secret key
     # @param [String] customer_token Encryption token
     # @param [Boolean] validate Whether or not to validate the request
-    #  
+    #
     def initialize(app_id, secret, customer_token, validate=true)
       @app_id = app_id
       @secret = secret
@@ -160,7 +138,7 @@ module Wechat
     end
 
     # Sends an image message
-    # 
+    #
     # @param to [String] The recipient of the message
     # @param file [File] The file to be sent
     # @return [String] the media id
@@ -184,7 +162,7 @@ module Wechat
     end
 
     def upload_image file
-      response = HTTMultiParty.post("#{UPLOAD_URL}#{@access_token}", body: { type: 'Image', media: file }, debug_output: $stdout)      
+      response = HTTMultiParty.post("#{UPLOAD_URL}#{@access_token}", body: { type: 'Image', media: file }, debug_output: $stdout)
       media_id = JSON.parse(response.body)['media_id']
     end
 
