@@ -3,8 +3,7 @@ require 'nokogiri'
 require 'httparty'
 require 'httmultiparty'
 require 'json'
-require 'rack'
-require 'rack/session/redis'
+require 'redis'
 
 module Wechat
   class AccessToken
