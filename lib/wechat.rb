@@ -28,7 +28,7 @@ module Wechat
       if redis.get(@app_id).nil? || redis.get(@app_id).empty?
         @access_token = get_new_access_token redis
       else
-        if JSON.parse(redis.get(@app_id))['errcode'] != ""
+        if JSON.parse(redis.get(@app_id))['errcode'] == nil
           token_expiry_time = JSON.parse(redis.get(@app_id))['time_stamp'] + JSON.parse(redis.get(@app_id))['expires_in']
           token_is_valid = token_expiry_time > Time.now.to_i + 60
           #if we have more than 1 minutes left on the clock.
