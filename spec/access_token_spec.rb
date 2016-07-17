@@ -8,7 +8,7 @@ describe Wechat::AccessToken do
   before do
     stub_request(:get, "#{Wechat::AccessToken::ACCESS_TOKEN_URL}?appid=#{app_id}&grant_type=client_credential&secret=#{secret}").
       to_return(:status => 200, :body => { "access_token" => "token", "expires_in" => 7200}.to_json, :headers => {})
-    end
+  end
 
   context 'get a new access code' do
     subject {
@@ -55,6 +55,19 @@ describe Wechat::AccessToken do
         expect(JSON.parse(redis.get(app_id))['access_token']).to eql('token')
         expect(JSON.parse(redis.get(app_id))['expires_in']).to eql(7200)
      end
+    end
+  end
+
+  describe 'if there is a problem with getting the access code' do
+    context 'if the app secret is invalid' do
+
+      it do
+        stub_request(:get, "#{Wechat::AccessToken::ACCESS_TOKEN_URL}?appid=#{app_id}&grant_type=client_credential&secret=#{secret}").
+          to_return(:status => 200, :body => { "errcode" => 40125, "errmsg" => "invalid appsecret, view more at http://t.cn/RAEkdVq hint: [jsDxoa0928szc8]", "time_stamp" => 1468414929 }.to_json, :headers => {})
+
+        token = Wechat::AccessToken.new(app_id, secret)        
+        expect{token.access_token}.to raise_error(Wechat::AccessTokenException)
+      end
     end
   end
 end
