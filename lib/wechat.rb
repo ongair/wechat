@@ -37,7 +37,11 @@ module Wechat
           @access_token = get_new_access_token redis
         end
       end
-      @access_token
+      if @access_token.nil?
+        raise AccessTokenException.new("Error getting access token for #{@app_id}")
+      else
+        return @access_token
+      end
     end
 
     def get_new_access_token redis
@@ -231,5 +235,11 @@ module Wechat
       def get_token
         AccessToken.new(app_id, secret).access_token
       end
+  end
+
+  class AccessTokenException < Exception
+    def initialize(msg="Error with getting the access token")
+      super
+    end
   end
 end
