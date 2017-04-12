@@ -29,21 +29,36 @@ module Wechat
         @access_token = get_new_access_token redis
       else
         if JSON.parse(redis.get(@app_id))['errcode'] == nil
-          token_expiry_time = JSON.parse(redis.get(@app_id))['time_stamp'] + JSON.parse(redis.get(@app_id))['expires_in']
-          token_is_valid = token_expiry_time > Time.now.to_i + 60
-          #if we have more than 1 minutes left on the clock.
-          #return cached token and do nothing.
-          if token_is_valid
-            @access_token = JSON.parse(redis.get(@app_id))['access_token']
+          if !redis.get(@app_id)['retries']
+            token_expiry_time = JSON.parse(redis.get(@app_id))['time_stamp'] + JSON.parse(redis.get(@app_id))['expires_in']
+            token_is_valid = token_expiry_time > Time.now.to_i + 60
+            #if we have more than 1 minutes left on the clock.
+            #return cached token and do nothing.
+            if token_is_valid
+              @access_token = JSON.parse(redis.get(@app_id))['access_token']
+            else
+              @access_token = get_new_access_token redis
+            end
           else
-            @access_token = get_new_access_token redis
+            @access_token = nil
           end
         else
          @access_token = nil
         end
       end
       if @access_token.nil?
-        raise AccessTokenException.new("Error getting access token for #{@app_id}")
+        no_retry = (redis.get(@app_id)['retries'] || 0).to_i
+
+        hash = JSON.parse({access_token: nil, retries: no_retry+1})
+
+        redis.set(@app_id, hash)
+
+        if no_retry <= 3
+          @access_token = get_new_access_token redis
+        else
+          raise AccessTokenException.new("Error getting access token for #{@app_id}")
+        end
+
       else
         return @access_token
       end
