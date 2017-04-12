@@ -28,17 +28,47 @@ module Wechat
       if redis.get(@app_id).nil? || redis.get(@app_id).empty?
         @access_token = get_new_access_token redis
       else
-        token_expiry_time = JSON.parse(redis.get(@app_id))['time_stamp'] + JSON.parse(redis.get(@app_id))['expires_in']
-        token_is_valid = token_expiry_time > Time.now.to_i + 60
-        #if we have more than 1 minutes left on the clock.
-        #return cached token and do nothing.
-        if token_is_valid
-          @access_token = JSON.parse(redis.get(@app_id))['access_token']
+        if JSON.parse(redis.get(@app_id))['errcode'] == nil
+          # check if the client has retried to get an access token
+          if redis.get(@app_id)['retries'].nil?
+            token_expiry_time = JSON.parse(redis.get(@app_id))['time_stamp'] + JSON.parse(redis.get(@app_id))['expires_in']
+            token_is_valid = token_expiry_time > Time.now.to_i + 60
+            #if we have more than 1 minutes left on the clock.
+            #return cached token and do nothing.
+            if token_is_valid
+              @access_token = JSON.parse(redis.get(@app_id))['access_token']
+            else
+              @access_token = get_new_access_token redis
+            end
+          else
+            @access_token = nil
+          end
         else
-          @access_token = get_new_access_token redis
+         @access_token = nil
         end
       end
-      @access_token
+
+      if @access_token.nil?
+        # gets the retries count
+        no_retry = (redis.get(@app_id)['retries'] || 0).to_i
+
+        # sets to current retris count +1
+        hash = JSON.parse({ access_token: nil, retries: no_retry+1 }.to_json)
+
+        # over-writes previous data
+        redis.set(@app_id, hash)
+
+        if no_retry <= 3
+          # retries to get a new access token
+          @access_token = get_new_access_token redis
+        else
+          # raises an exceptions when retries count runs out or fails to get a new access token
+          raise AccessTokenException.new("Error getting access token for #{@app_id}")
+        end
+
+      else
+        return @access_token
+      end
     end
 
     def get_new_access_token redis
@@ -110,7 +140,7 @@ module Wechat
 
       doc.xpath('//xml').each do |node|
         hash = {}
-        node.xpath('ToUserName | FromUserName | CreateTime | MsgType | Event | Content | PicUrl | MediaId | MsgId | Recognition | Location_X | Location_Y | Scale').each do |child|
+        node.xpath('ToUserName | FromUserName | CreateTime | MsgType | Event | EventKey | Content | PicUrl | MediaId | MsgId | Recognition | Location_X | Location_Y | Scale').each do |child|
           hash["#{child.name}"] = child.text.strip
         end
         out << hash
@@ -232,5 +262,11 @@ module Wechat
       def get_token
         AccessToken.new(app_id, secret).access_token
       end
+  end
+
+  class AccessTokenException < Exception
+    def initialize(msg="Error with getting the access token")
+      super
+    end
   end
 end
