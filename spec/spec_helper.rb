@@ -3,6 +3,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'rspec'
 require 'wechat'
+require 'access_token'
 require 'webmock/rspec'
 require 'redis_test'
 
