@@ -4,6 +4,7 @@ require 'httparty'
 require 'httmultiparty'
 require 'json'
 require 'rack'
+require 'access_token'
 require 'rack/session/redis'
 
 module Wechat
