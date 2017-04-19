@@ -4,51 +4,10 @@ require 'httparty'
 require 'httmultiparty'
 require 'json'
 require 'rack'
+require 'access_token'
 require 'rack/session/redis'
 
 module Wechat
-  class AccessToken
-    ACCESS_TOKEN_URL = 'https://api.wechat.com/cgi-bin/token'
-    attr_accessor :access_token
-
-    def initialize(app_id, secret)
-      @app_id = app_id
-      @secret = secret
-    end
-
-    ##
-    # An access token is a globally unique token that each official account must obtain before calling APIs.
-    # Normally, an access token is valid for 7,200 seconds.
-    # Getting a new access token will invalidate the previous one.
-    #
-    # @return [JSON] hash [access_token, expires_in:(7200)]
-    #
-    def access_token
-      redis = Redis.new
-      if redis.get(@app_id).nil? || redis.get(@app_id).empty?
-        @access_token = get_new_access_token redis
-      else
-        token_expiry_time = JSON.parse(redis.get(@app_id))['time_stamp'] + JSON.parse(redis.get(@app_id))['expires_in']
-        token_is_valid = token_expiry_time > Time.now.to_i + 60
-        #if we have more than 1 minutes left on the clock.
-        #return cached token and do nothing.
-        if token_is_valid
-          @access_token = JSON.parse(redis.get(@app_id))['access_token']
-        else
-          @access_token = get_new_access_token redis
-        end
-      end
-      @access_token
-    end
-
-    def get_new_access_token redis
-      response = HTTParty.get("#{ACCESS_TOKEN_URL}?grant_type=client_credential&appid=#{@app_id}&secret=#{@secret}", :debug_output => $stdout)
-      hash = JSON.parse(response.body).merge(Hash['time_stamp',Time.now.to_i])
-      redis.set @app_id, hash.to_json
-      JSON.parse(redis.get(@app_id))['access_token']
-    end
-  end
-
   class Client
     attr_accessor :app_id, :secret, :access_token, :customer_token, :validate
     SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
@@ -110,7 +69,7 @@ module Wechat
 
       doc.xpath('//xml').each do |node|
         hash = {}
-        node.xpath('ToUserName | FromUserName | CreateTime | MsgType | Event | Content | PicUrl | MediaId | MsgId | Recognition | Location_X | Location_Y | Scale').each do |child|
+        node.xpath('ToUserName | FromUserName | CreateTime | MsgType | Event | EventKey | Content | PicUrl | MediaId | MsgId | Recognition | Location_X | Location_Y | Scale').each do |child|
           hash["#{child.name}"] = child.text.strip
         end
         out << hash
@@ -232,5 +191,11 @@ module Wechat
       def get_token
         AccessToken.new(app_id, secret).access_token
       end
+  end
+
+  class AccessTokenException < Exception
+    def initialize(msg="Error with getting the access token")
+      super
+    end
   end
 end

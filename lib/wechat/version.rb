@@ -1,3 +1,3 @@
 module Wechat
-  VERSION = "0.0.1.29"
+  VERSION = "0.0.1.33"
 end
