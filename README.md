@@ -8,7 +8,7 @@ Currently supporting authentication, access token aquisition, message receipt an
 Add this line to your application's Gemfile:
 
 ```ruby
-  gem 'wechat', git: 'https://github.com/sproutke/wechat.git'
+  gem 'wechat', git: 'https://github.com/ongair/wechat.git'
 ```
 
 And then execute:
