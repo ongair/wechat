@@ -1,7 +1,6 @@
 require 'wechat/version'
 require 'nokogiri'
 require 'base64'
-require 'aes'
 require 'httparty'
 require 'httmultiparty'
 require 'json'
