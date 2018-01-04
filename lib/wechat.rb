@@ -1,5 +1,7 @@
 require 'wechat/version'
 require 'nokogiri'
+require 'base64'
+require 'aes'
 require 'httparty'
 require 'httmultiparty'
 require 'json'
@@ -44,10 +46,9 @@ module Wechat
     # @param timestamp [TimeStamp] timestamp
     # @return [Boolean] the digest == signature
     ##
-    def authenticate(nonce, signature, timestamp)
+    def authenticate(nonce, signature, timestamp, encrypt_msg = '')
       array = [customer_token, timestamp, nonce].sort!
       check_str = array.join
-
       digest = Digest::SHA1.hexdigest check_str
       if validate
         return digest == signature
@@ -55,7 +56,6 @@ module Wechat
         return true
       end
     end
-
     # When developers try to authenticate a message
     # for the first time, the WeChat server sends a
     # POST request containing the validation params and
@@ -63,13 +63,24 @@ module Wechat
     #
     # @param xml_message [XML] an XML object containing the message
     # @return [JSON] the message
-    def receive_message xml_message
+    def receive_message xml_message, aes_key
       doc = Nokogiri::XML(xml_message)
       out = []
+      if !aes_key.nil?
+        data = doc.xpath('//Encrypt').text.strip
+        key=aes_key + '='
+        decipher = OpenSSL::Cipher::AES256.new :CBC
+        decipher.decrypt
+        decipher.key = key.unpack('m')[0]
+        plain_text = decipher.update(data.unpack('m')[0])
+        doc = Nokogiri::XML(plain_text[/<xml[\s\S]*?<\/xml>/])
+        # puts plain_text
+        # binding.pry
+      end
 
       doc.xpath('//xml').each do |node|
         hash = {}
-        node.xpath('ToUserName | FromUserName | CreateTime | MsgType | Event | EventKey | Content | PicUrl | MediaId | MsgId | Recognition | Location_X | Location_Y | Scale').each do |child|
+        node.xpath('ToUserName | FromUserName | CreateTime | MsgType | Event | EventKey | Content | PicUrl | MediaId | MsgId | Recognition | Location_X | Location_Y | Scale | Encrypt').each do |child|
           hash["#{child.name}"] = child.text.strip
         end
         out << hash
