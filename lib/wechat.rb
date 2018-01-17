@@ -95,14 +95,14 @@ module Wechat
     # @param msg_type [String] The type of message. Can be text or image.
     # @param content [String] The message or media_id
     # @return [Boolean] if message was sent successfully
-    def send_message to, msg_type, content
+    def send_message to, msg_type, content, encrypt_type = false
       @access_token = AccessToken.new(app_id, secret).access_token
       request = case msg_type
-      when 'text'
-        { touser: to, msgtype: msg_type, text: { content: content }}.to_json
-      when 'image'
-        { touser: to, msgtype: msg_type, image: { media_id: content }}.to_json
-      end
+        when 'text'
+          { touser: to, msgtype: msg_type, text: { content: content }}.to_json
+        when 'image'
+          { touser: to, msgtype: msg_type, image: { media_id: content }}.to_json
+        end
       send request
     end
 
