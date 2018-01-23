@@ -6,6 +6,7 @@ require 'json'
 require 'rack'
 require 'access_token'
 require 'rack/session/redis'
+require 'emoji'
 
 module Wechat
   class Client
