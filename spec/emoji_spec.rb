@@ -43,5 +43,10 @@ describe Wechat::Emoji do
       text = "When I /::'( i want to /::Z"
       expect(Wechat::Emoji.replace_with_unicode(text)).to eql("When I \u{1F622} i want to \u{1f634}")
     end
+
+    it 'if an emoji does not have a unicode equivalent it is unchanged' do
+      text = "I want to /::) but it comes out as a /:,@P"
+      expect(Wechat::Emoji.replace_with_unicode(text)).to eql("I want to \u{1F600} but it comes out as a /:,@P")
+    end
   end
 end
