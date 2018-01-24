@@ -17,8 +17,31 @@ describe Wechat::Emoji do
     end
 
     it 'Can detect non word based escaped emoji' do
-      text = '/:<L>'
+      text = '/::)'
       expect(Wechat::Emoji.has_emoji?(text)).to be(true)
+    end
+
+    it 'Can detect all the emojis' do
+      Wechat::Emoji::EMOJI.keys.each do |key|
+        # puts "Key #{key}"
+        expect(Wechat::Emoji.has_emoji?(key)).to be(true)
+      end
+    end
+  end
+
+  context 'replacing with unicode' do
+
+    it 'if no emoji are present the same text is returned' do
+      text = 'Happy birthday'
+      expect(Wechat::Emoji.replace_with_unicode(text)).to eql(text)
+    end
+
+    it 'can detect a smiley emoji' do
+      text = "I want to /::) but it comes out as a /::|/::<"
+      expect(Wechat::Emoji.replace_with_unicode(text)).to eql("I want to \u{1F600} but it comes out as a \u{1f621}\u{1f62d}")
+
+      text = "When I /::'( i want to /::Z"
+      expect(Wechat::Emoji.replace_with_unicode(text)).to eql("When I \u{1F622} i want to \u{1f634}")
     end
   end
 end
