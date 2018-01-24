@@ -6,9 +6,6 @@ module Wechat
     def initialize(app_id, secret)
       @app_id = app_id
       @secret = secret
-      # @redis = Redis.new
-
-      # load_from_redis
       load_from_konexta
     end
 
@@ -31,33 +28,9 @@ module Wechat
     def refresh
       get_new_access_token
       load_from_konexta
-      # load_from_redis
     end
 
-    # def load_from_redis
-    #   # redis = Redis.new
-
-    #   data = @redis.get(@app_id)
-    #   if (data.nil? || data.empty?)
-    #     # we have nothing
-    #     @token = nil
-    #     @timestamp = nil
-    #     @expires_in = nil
-    #     @error = nil
-    #   else
-
-    #     parsed = JSON.parse(data)
-    #     @token = parsed['access_token']
-    #     @timestamp = parsed['time_stamp']
-    #     @expires_in = parsed['expires_in']
-    #     @error = parsed['errcode']
-
-    #   end
-    # end
-
     def load_from_konexta
-      # redis = Redis.new
-      # data = @redis.get(@app_id)
       @konexta_client=Konexta::Client.find_by app_id: @app_id
       if @konexta_client.nil? || @konexta_client.access_token.nil?
         # we have nothing

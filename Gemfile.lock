@@ -5,7 +5,6 @@ PATH
       httmultiparty
       httparty
       nokogiri (= 1.6.1)
-      redis-rack
 
 GEM
   remote: https://rubygems.org/
@@ -34,15 +33,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    rack (1.6.8)
     rake (10.4.2)
-    redis (3.3.5)
-    redis-rack (2.0.4)
-      rack (>= 1.5, < 3)
-      redis-store (>= 1.2, < 2)
-    redis-store (1.4.1)
-      redis (>= 2.2, < 5)
-    redis_test (0.0.9)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
       rspec-expectations (~> 3.3.0)
@@ -75,7 +66,6 @@ DEPENDENCIES
   bundler (~> 1.7)
   pry
   rake (~> 10.0)
-  redis_test
   rspec
   simplecov
   webmock

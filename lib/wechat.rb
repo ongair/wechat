@@ -6,7 +6,6 @@ require 'httmultiparty'
 require 'json'
 require 'rack'
 require 'access_token'
-require 'rack/session/redis'
 
 module Wechat
   class Client
@@ -74,7 +73,6 @@ module Wechat
         plain_text = decipher.update(data.unpack('m')[0])
         doc = Nokogiri::XML(plain_text[/<xml[\s\S]*?<\/xml>/])
         # puts plain_text
-        # binding.pry
       end
 
       doc.xpath('//xml').each do |node|
@@ -95,7 +93,7 @@ module Wechat
     # @param msg_type [String] The type of message. Can be text or image.
     # @param content [String] The message or media_id
     # @return [Boolean] if message was sent successfully
-    def send_message to, msg_type, content, encrypt_type = false
+    def send_message to, msg_type, content
       @access_token = AccessToken.new(app_id, secret).access_token
       request = case msg_type
         when 'text'
@@ -105,7 +103,6 @@ module Wechat
         end
       send request
     end
-
     # Sends an image message
     #
     # @param to [String] The recipient of the message
