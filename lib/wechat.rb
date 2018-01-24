@@ -64,14 +64,14 @@ module Wechat
     #
     # @param xml_message [XML] an XML object containing the message
     # @return [JSON] the message
-    def receive_message xml_message
+    def receive_message xml_message, parse_emoji=false
       doc = Nokogiri::XML(xml_message)
       out = []
 
       doc.xpath('//xml').each do |node|
         hash = {}
         node.xpath('ToUserName | FromUserName | CreateTime | MsgType | Event | EventKey | Content | PicUrl | MediaId | MsgId | Recognition | Location_X | Location_Y | Scale').each do |child|
-          hash["#{child.name}"] = child.text.strip
+          hash["#{child.name}"] = process_text(child.text.strip,parse_emoji)
         end
         out << hash
       end
@@ -191,6 +191,13 @@ module Wechat
 
       def get_token
         AccessToken.new(app_id, secret).access_token
+      end
+
+      def process_text raw, handle_emoji
+        if handle_emoji
+          Wechat::Emoji.replace_with_unicode raw
+        end
+        raw
       end
   end
 

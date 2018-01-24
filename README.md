@@ -20,14 +20,15 @@ And then execute:
     require 'wechat'
 
 ### Receiving messages
- When the WeChat server sends a message it must be authenticated and a response sent back to the WeChat server. The WeChat server expects the unchanged `echostr` as the response upon successful authentication. The WeChat server sends a `POST` request to the submitted URL with four parameters: `signature`, `timestamp`, `nonce` and `echostr` and the message in the body. Developers authenticate the messages by checking the signature parameter and extract the XML message from the body.
+ When the WeChat server sends a message it must be authenticated and a response sent back to the WeChat server. The WeChat server expects the unchanged `echostr` as the response upon successful authentication. The WeChat server sends a `POST` request to the submitted URL with four parameters: `signature`, `timestamp`, `nonce` and `echostr` and the message in the body. Developers authenticate the messages by checking the signature parameter and extract the XML message from the body. If you would like Emojis from Wechat to be converted to unicode when receiving the message, pass in the `true` as the second parameter to `receive_message`
 
  ```ruby
  def receive_message
     we_chat_client = Wechat::Client.new(app_id, secret, customer_token)
 
     render text: params[:echostr] if we_chat_client.authenticate(params[:nonce],params[:signature], params[:timestamp])
-    message = we_chat_client.receive_message(response.body.read)
+    handle_emoji = true
+    message = we_chat_client.receive_message(response.body.read, handle_emoji)
  end
 
  message => { "FromUserName"=>"odmSit8iRc_AdaTrWoEGabi4nVd8", "CreateTime"=>"1436355707", "MsgType"=>"text", "Content"=>"How's it going?", "MsgId"=>"6169100787194945124"}

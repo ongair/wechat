@@ -5,6 +5,10 @@ describe Wechat::Client do
 <xml><ToUserName><![CDATA[gh_283218b72e]]></ToUserName><FromUserName><![CDATA[odmSit8iRc_AdaTrWoEGabw4nVd8]]></FromUserName><CreateTime>1436349944</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[Hi]]></Content><MsgId>6169076035298417306</MsgId></xml>
 EOS
 
+  emoji_message = <<-EOS
+  <xml><ToUserName><![CDATA[gh_283218b72e]]></ToUserName><FromUserName><![CDATA[odmSit8iRc_AdaTrWoEGabw4nVd8]]></FromUserName><CreateTime>1436349944</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[Hi /::)]]></Content><MsgId>6169076035298417307</MsgId></xml>
+  EOS
+
   location_message = <<-EOS
   <xml>
     <ToUserName><![CDATA[toUser]]></ToUserName>
@@ -63,14 +67,18 @@ EOS
       expect(we_chat_client.receive_message(received_message)['Content']).to eq('Hi')
       expect(we_chat_client.receive_message(received_message)['MsgId']).to eq('6169076035298417306')
     end
+
+    it 'can handle an emoji message' do
+      expect(we_chat_client.receive_message(emoji_message, true)['Content']).to eq("Hi \u{1F600}")
+    end
   end
 
   context 'can receive a location' do
     it do
-      expect(we_chat_client.receive_message(location_message)['MsgType']).to eq('location')    
-      expect(we_chat_client.receive_message(location_message)['Location_X']).to eq('23.134521')    
-      expect(we_chat_client.receive_message(location_message)['Location_X']).to eq('23.134521')    
-      expect(we_chat_client.receive_message(location_message)['Scale']).to eq('20')    
+      expect(we_chat_client.receive_message(location_message)['MsgType']).to eq('location')
+      expect(we_chat_client.receive_message(location_message)['Location_X']).to eq('23.134521')
+      expect(we_chat_client.receive_message(location_message)['Location_X']).to eq('23.134521')
+      expect(we_chat_client.receive_message(location_message)['Scale']).to eq('20')
     end
   end
 
@@ -92,7 +100,7 @@ EOS
       file = File.open('spec/files/wechat.jpg')
 
       response = {}
-      
+
       expect(response).to receive(:body).and_return({ media_id: '12345' }.to_json)
       expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
         {body: { type: 'Image', media: file }, debug_output: $stdout}).and_return(response)
