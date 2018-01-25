@@ -48,12 +48,12 @@ EOS
   let(:access_token){we_chat_client.access_token}
   let(:access_token_expiry){we_chat_client.access_token_expiry}
 
-  before do
-    stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
-      to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+  # before do
+  #   stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+  #     to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
 
 
-  end
+  # end
 
   context 'can authenticate to receive a new message' do
     it do
@@ -99,8 +99,10 @@ EOS
     end
   end
 
-  context 'can send a message' do
+  context 'can send a message with no access token' do
     it do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+      to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
       expect(we_chat_client.access_token).to eql(nil)
 
       expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
@@ -113,11 +115,63 @@ EOS
     
   end
 
+  context 'can send a message with valid access token' do
+    let(:we_chat_client_2){Wechat::Client.new(app_id, secret, customer_token, true , 'token_within_client', (Time.now.to_i + 7200))}
+    it do
+      expect(we_chat_client_2.access_token).to eql('token_within_client')
+
+      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
+        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
+        debug_output: $stdout} ).and_return(true)
+
+      expect(we_chat_client_2.send_message(to_user,'text',message)).to be(true)
+      expect(we_chat_client_2.access_token).to eql('token_within_client')
+    end  
+  end
+
+  context 'can send a message with nil access token and timestamp' do
+    let(:we_chat_client_2){Wechat::Client.new(app_id, secret, customer_token, true , nil, nil)}
+    it do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+      to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
+      expect(we_chat_client_2.access_token).to eql(nil)
+
+      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
+        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
+        debug_output: $stdout} ).and_return(true)
+
+      expect(we_chat_client_2.send_message(to_user,'text',message)).to be(true)
+      expect(we_chat_client_2.access_token).to eql('token_within_client')
+    end  
+  end
+
+  context 'can send a message with expired access token' do
+    let(:we_chat_client_2){Wechat::Client.new(app_id, secret, customer_token, true , 'token_within_client', (Time.now.to_i - 100))}
+    it do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+      to_return(:status => 200, :body => { "access_token" => "token_within_client_2", "expires_in" => 7200}.to_json, :headers => {})
+
+      expect(we_chat_client_2.access_token).to eql('token_within_client')
+
+      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client_2",
+        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
+        debug_output: $stdout} ).and_return(true)
+
+      expect(we_chat_client_2.send_message(to_user,'text',message)).to be(true)
+      expect(we_chat_client_2.access_token).to eql('token_within_client_2')
+    end  
+  end
+
   context 'can send an image' do
     it do
       file = File.open('spec/files/wechat.jpg')
 
       response = {}
+
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+      to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
       
       expect(response).to receive(:body).and_return({ media_id: '12345' }.to_json)
       expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
@@ -133,6 +187,9 @@ EOS
 
   context 'can get a file attachment url' do
     it do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+      to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
       url = "#{Wechat::Client::FILE_URL}token_within_client&media_id=12345"
       expect(we_chat_client.get_media_url('12345')).to eql(url)
     end
@@ -142,6 +199,10 @@ EOS
     it do
       expect(we_chat_client.access_token).to eql(nil)
       url = 'www.google.com/images/branding/googlelogo/1x/googlelogo_color_150x54dp.png'
+
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+      to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
 
       expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
         { body: { touser: '12345', msgtype: 'news', news: { articles: [{ title: 'Attachment', description: 'See Attachment', picurl: url }]} }.to_json,
@@ -154,6 +215,9 @@ EOS
 
   context 'raises error if message refuses to send' do
     it do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+      to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
       expect(we_chat_client.access_token).to eql(nil)
       expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
         {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
