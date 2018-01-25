@@ -1,19 +1,17 @@
 require 'wechat/version'
 require 'nokogiri'
-require 'base64'
 require 'httparty'
 require 'httmultiparty'
 require 'json'
-require 'rack'
-require 'access_token'
 
 module Wechat
   class Client
-    attr_accessor :app_id, :secret, :access_token, :customer_token, :validate
+    attr_accessor :app_id, :secret, :access_token, :access_token_expiry, :customer_token, :validate
     SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
     PROFILE_URL = 'https://api.wechat.com/cgi-bin/user/info?'
     UPLOAD_URL = 'http://file.api.wechat.com/cgi-bin/media/upload?access_token='
     FILE_URL = 'http://file.api.wechat.com/cgi-bin/media/get?access_token='
+    ACCESS_TOKEN_URL = 'https://api.wechat.com/cgi-bin/token'
 
 
 
@@ -25,12 +23,15 @@ module Wechat
     # @param [String] customer_token Encryption token
     # @param [Boolean] validate Whether or not to validate the request
     #
-    def initialize(app_id, secret, customer_token, validate=true)
+    def initialize(app_id, secret, customer_token, validate=true, access_token = nil, access_token_expiry = nil)
       @app_id = app_id
       @secret = secret
       @customer_token = customer_token
-      @access_token = nil
       @validate = validate
+
+      @access_token = access_token
+      @access_token_expiry = access_token_expiry
+      @error = nil
     end
 
 
@@ -44,7 +45,7 @@ module Wechat
     # @param timestamp [TimeStamp] timestamp
     # @return [Boolean] the digest == signature
     ##
-    def authenticate(nonce, signature, timestamp, encrypt_msg = '')
+    def authenticate(nonce, signature, timestamp)
       array = [customer_token, timestamp, nonce].sort!
       check_str = array.join
       digest = Digest::SHA1.hexdigest check_str
@@ -54,6 +55,7 @@ module Wechat
         return true
       end
     end
+
     # When developers try to authenticate a message
     # for the first time, the WeChat server sends a
     # POST request containing the validation params and
@@ -72,9 +74,7 @@ module Wechat
         decipher.key = key.unpack('m')[0]
         plain_text = decipher.update(data.unpack('m')[0])
         doc = Nokogiri::XML(plain_text[/<xml[\s\S]*?<\/xml>/])
-        # puts plain_text
       end
-
       doc.xpath('//xml').each do |node|
         hash = {}
         node.xpath('ToUserName | FromUserName | CreateTime | MsgType | Event | EventKey | Content | PicUrl | MediaId | MsgId | Recognition | Location_X | Location_Y | Scale | Encrypt').each do |child|
@@ -94,7 +94,7 @@ module Wechat
     # @param content [String] The message or media_id
     # @return [Boolean] if message was sent successfully
     def send_message to, msg_type, content
-      @access_token = AccessToken.new(app_id, secret).access_token
+      get_access_token
       request = case msg_type
         when 'text'
           { touser: to, msgtype: msg_type, text: { content: content }}.to_json
@@ -109,7 +109,7 @@ module Wechat
     # @param file [File] The file to be sent
     # @return [String] the media id
     def send_image to, file
-      @access_token = AccessToken.new(app_id, secret).access_token
+      get_access_token
 
       # response = HTTParty.post(url, body: request, :debug_output => $stdout)
       media_id = upload_image(file)
@@ -123,7 +123,7 @@ module Wechat
     #
     # @return [String] the url
     def get_media_url media_id
-      access_token = AccessToken.new(app_id, secret).access_token
+      get_access_token
       return "#{FILE_URL}#{access_token}&media_id=#{media_id}"
     end
 
@@ -133,7 +133,7 @@ module Wechat
     end
 
     def send_multiple_rich_messages to, messages
-      @access_token = AccessToken.new(app_id, secret).access_token
+      get_access_token
       articles = []
       messages.each do |message|
         articles << { title: message[:title], description: message[:description], picurl: message[:picurl] }
@@ -173,13 +173,28 @@ module Wechat
     # @param to [OpenId] Unique user's ID
     # @return [String] user's name
     def get_profile user_id, lang="en_US"
-      @access_token = AccessToken.new(app_id, secret).access_token
-      url = "#{PROFILE_URL}access_token=#{get_token}&openid=#{user_id}&lang=#{lang}"
+      get_access_token
+      url = "#{PROFILE_URL}access_token=#{access_token}&openid=#{user_id}&lang=#{lang}"
       response = HTTParty.get(url, :debug_output => $stdout)
       if response
         return response
       else
         raise 'Error: Unable to retreive user profile'
+      end
+    end
+
+    def get_access_token
+      # check if token has expired or is empty
+      if (@access_token_expiry.to_i < Time.now.to_i + 60) || @access_token.nil?
+        # fetch new token and return it and access token expiry
+        response = HTTParty.get("#{ACCESS_TOKEN_URL}?grant_type=client_credential&appid=#{@app_id}&secret=#{@secret}", :debug_output => $stdout)
+        hash = JSON.parse(response.body).merge(Hash['time_stamp',Time.now.to_i])
+        if !hash['errcode'].nil?
+          @error = hash['errmsg']
+        else
+          @access_token = hash["access_token"]
+          @access_token_expiry = Time.at(hash["expires_in"].to_i + hash["time_stamp"].to_i)
+        end
       end
     end
 
@@ -193,10 +208,6 @@ module Wechat
           # {"errcode"=>45015, "errmsg"=>"response out of time limit or subscription is canceled hint: [iJ012a0633age6]"}
           raise "Error: WeChat Message not sent!"
         end
-      end
-
-      def get_token
-        AccessToken.new(app_id, secret).access_token
       end
   end
 
