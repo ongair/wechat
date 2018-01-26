@@ -3,6 +3,7 @@ require 'nokogiri'
 require 'httparty'
 require 'httmultiparty'
 require 'json'
+require 'emoji'
 
 module Wechat
   class Client
@@ -64,8 +65,10 @@ module Wechat
     # the message in the body and converts to JSON string
     #
     # @param xml_message [XML] an XML object containing the message
+    # @param aes_key String
+    # @param parse_emoji Boolean
     # @return [JSON] the message
-    def receive_message xml_message, aes_key
+    def receive_message xml_message, aes_key=nil, parse_emoji=false
       doc = Nokogiri::XML(xml_message)
       out = []
       if !aes_key.nil?
@@ -74,13 +77,13 @@ module Wechat
         decipher = OpenSSL::Cipher::AES256.new :CBC
         decipher.decrypt
         decipher.key = key.unpack('m')[0]
-        plain_text = decipher.update(data.unpack('m')[0])
+        plain_text = process_text(decipher.update(data.unpack('m')[0]), parse_emoji)
         doc = Nokogiri::XML(plain_text[/<xml[\s\S]*?<\/xml>/])
       end
       doc.xpath('//xml').each do |node|
         hash = {}
         node.xpath('ToUserName | FromUserName | CreateTime | MsgType | Event | EventKey | Content | PicUrl | MediaId | MsgId | Recognition | Location_X | Location_Y | Scale | Encrypt').each do |child|
-          hash["#{child.name}"] = child.text.strip
+          hash["#{child.name}"] = process_text(child.text.strip, parse_emoji)
         end
         out << hash
       end
@@ -210,6 +213,13 @@ module Wechat
           # {"errcode"=>45015, "errmsg"=>"response out of time limit or subscription is canceled hint: [iJ012a0633age6]"}
           raise "Error: WeChat Message not sent!"
         end
+      end
+
+      def process_text raw, handle_emoji
+        if handle_emoji
+          Wechat::Emoji.replace_with_unicode raw
+        end
+        raw
       end
   end
 
