@@ -22,6 +22,8 @@ module Wechat
     # @param [String] secret Secret key
     # @param [String] customer_token Encryption token
     # @param [Boolean] validate Whether or not to validate the request
+    # @param [String] access_token The access_token
+    # @param [DateTime] access_token_expiry The expiry of the access_token
     #
     def initialize(app_id, secret, customer_token, validate=true, access_token = nil, access_token_expiry = nil)
       @app_id = app_id
