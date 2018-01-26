@@ -24,7 +24,7 @@ And then execute:
 
  ```ruby
  def receive_message
-    we_chat_client = Wechat::Client.new(app_id, secret, customer_token)
+    we_chat_client = Wechat::Client.new(app_id, secret, customer_token, true, auth_token, auth_token_expiry)
 
     render text: params[:echostr] if we_chat_client.authenticate(params[:nonce],params[:signature], params[:timestamp])
     message = we_chat_client.receive_message(response.body.read)
@@ -37,14 +37,14 @@ And then execute:
 #### Text Message
 
 ```ruby
-we_chat_client = Wechat::Client.new(app_id, secret, customer_token)
+we_chat_client = Wechat::Client.new(app_id, secret, customer_token, true, auth_token, auth_token_expiry)
 we_chat_client.send_message(to_user,'text',message)
 ```
 
 #### Image Message
 
 ```ruby
-we_chat_client = Wechat::Client.new(app_id, secret, customer_token)
+we_chat_client = Wechat::Client.new(app_id, secret, customer_token, true, auth_token, auth_token_expiry)
 we_chat_client.send_message(to_user,'image',message)
 ```
 
