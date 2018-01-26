@@ -28,7 +28,7 @@ And then execute:
 
     render text: params[:echostr] if we_chat_client.authenticate(params[:nonce],params[:signature], params[:timestamp])
     handle_emoji = true
-    message = we_chat_client.receive_message(response.body.read, handle_emoji)
+    message = we_chat_client.receive_message(response.body.read, nil, handle_emoji)
  end
 
  message => { "FromUserName"=>"odmSit8iRc_AdaTrWoEGabi4nVd8", "CreateTime"=>"1436355707", "MsgType"=>"text", "Content"=>"How's it going?", "MsgId"=>"6169100787194945124"}
