@@ -65,7 +65,6 @@ module Wechat
       "/:!!!" => { name: "skull", unicode: "\u{1f480}", regex: /\/:!!!/ },
       "/:xx" => { name: "hammer", unicode: "\u{1f528}", regex: /\/:xx/ },
       "/:bye" => { name: "bye", unicode: "\u{1f44b}", regex: /\/:bye/ },
-      "/:xx" => { name: "hammer", unicode: "\u{1f528}", regex: /\/:xx/ },
       "/:wipe" => { name: "speechless", unicode: "/:wipe", regex: /\/:wipe/ },
       "/:dig" => { name: "dig", unicode: "/:dig", regex: /\/:dig/ },
       "/:handclap" => { name: "handclap", unicode: "\u{1f44f}", regex: /\/:handclap/ },
