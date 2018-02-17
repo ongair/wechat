@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wechat (0.0.1.35)
+    wechat (0.0.1.36)
       httmultiparty
       httparty
       nokogiri (= 1.8.1)

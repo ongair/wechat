@@ -82,7 +82,7 @@ module Wechat
       end
       doc.xpath('//xml').each do |node|
         hash = {}
-        node.xpath('ToUserName | FromUserName | CreateTime | MsgType | Event | EventKey | Content | PicUrl | MediaId | MsgId | Recognition | Location_X | Location_Y | Scale | Encrypt').each do |child|
+        node.xpath('ToUserName | FromUserName | CreateTime | MsgType | Event | EventKey | Content | PicUrl | MediaId | MsgId | Format | Recognition | Location_X | Location_Y | Scale | Encrypt').each do |child|
           hash["#{child.name}"] = process_text(child.text.strip, parse_emoji)
         end
         out << hash
