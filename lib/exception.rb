@@ -7,14 +7,21 @@ module Wechat
 
     def self.get_error hash
       code = hash['errcode']
-      # error
       case code
       when 40003
         error = InvalidOpenIdException.new
+      when 48001, 50001
+        error = InsufficientPermissionsException.new
       end
       error
     end
 
+  end
+
+  class MediaUploadException < WeChatException
+  end
+
+  class InsufficientPermissionsException < WeChatException
   end
 
   class InvalidOpenIdException < WeChatException

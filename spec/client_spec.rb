@@ -129,6 +129,16 @@ EOS
 
       expect{ we_chat_client.get_profile("123") }.to raise_error(Wechat::WeChatException)
     end
+
+    it 'can handle an error where the oa does not have sufficient permissions' do
+      we_chat_client.access_token = "token"
+      we_chat_client.access_token_expiry = Time.now.to_i + 7200
+
+      stub = stub_request(:get, "#{Wechat::Client::PROFILE_URL}access_token=token&openid=123&lang=en_US")
+        .to_return(status: 200, body: { "errcode" => 48001, "errmsg" => "Unauthorized API function hint: [VElNAA0508sha5]" }.to_json, headers: {})
+
+      expect{ we_chat_client.get_profile("123") }.to raise_error(Wechat::InsufficientPermissionsException)
+    end
   end
 
   context 'can receive a location' do
