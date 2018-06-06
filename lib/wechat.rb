@@ -182,7 +182,7 @@ module Wechat
       get_access_token
       url = "#{PROFILE_URL}access_token=#{access_token}&openid=#{user_id}&lang=#{lang}"
       response = HTTParty.get(url, :debug_output => $stdout)
-      if response
+      if response && response.code == 200
         result = JSON.parse(response.body)
         if WeChatException.has_error?(result)
           raise WeChatException.get_error(result)
@@ -190,7 +190,7 @@ module Wechat
           return result
         end
       else
-        raise 'Error: Unable to retreive user profile'
+        raise WeChatException.new('Error: Unable to retreive user profile try again later')
       end
     end
 

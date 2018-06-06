@@ -119,6 +119,16 @@ EOS
 
       expect{ we_chat_client.get_profile("123") }.to raise_error(Wechat::InvalidOpenIdException)
     end
+
+    it 'can handle an error where there is general connectivity issues' do
+      we_chat_client.access_token = "token"
+      we_chat_client.access_token_expiry = Time.now.to_i + 7200
+
+      stub = stub_request(:get, "#{Wechat::Client::PROFILE_URL}access_token=token&openid=123&lang=en_US")
+        .to_return(status: 500, headers: {})
+
+      expect{ we_chat_client.get_profile("123") }.to raise_error(Wechat::WeChatException)
+    end
   end
 
   context 'can receive a location' do
