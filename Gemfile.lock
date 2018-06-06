@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wechat (0.0.1.36)
+    wechat (0.0.1.37)
       httmultiparty
       httparty
       nokogiri (= 1.8.1)
@@ -19,7 +19,7 @@ GEM
       httparty (>= 0.7.3)
       mimemagic
       multipart-post
-    httparty (0.15.6)
+    httparty (0.16.2)
       multi_xml (>= 0.5.2)
     json (1.8.3)
     method_source (0.8.2)

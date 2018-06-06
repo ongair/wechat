@@ -134,8 +134,21 @@ module Wechat
     end
 
     def upload_image file
-      response = HTTMultiParty.post("#{UPLOAD_URL}#{@access_token}", body: { type: 'Image', media: file }, debug_output: $stdout)
-      media_id = JSON.parse(response.body)['media_id']
+      media_id = nil
+      begin
+        response = HTTMultiParty.post("#{UPLOAD_URL}#{@access_token}", body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300)
+        if response.code == 200
+          result = JSON.parse(response.body)
+
+          if WeChatException.has_error?(result)
+          else
+            media_id = result['media_id']
+          end
+        end
+      rescue Net::ReadTimeout => tme
+        raise Wechat::TimeoutException.new("Timeout while accessing #{UPLOAD_URL}")
+      end
+      return media_id
     end
 
     def send_multiple_rich_messages to, messages
@@ -181,16 +194,21 @@ module Wechat
     def get_profile user_id, lang="en_US"
       get_access_token
       url = "#{PROFILE_URL}access_token=#{access_token}&openid=#{user_id}&lang=#{lang}"
-      response = HTTParty.get(url, :debug_output => $stdout)
-      if response && response.code == 200
-        result = JSON.parse(response.body)
-        if WeChatException.has_error?(result)
-          raise WeChatException.get_error(result)
+
+      begin
+        response = HTTParty.get(url, :debug_output => $stdout)
+        if response && response.code == 200
+          result = JSON.parse(response.body)
+          if WeChatException.has_error?(result)
+            raise WeChatException.get_error(result)
+          else
+            return result
+          end
         else
-          return result
+          raise WeChatException.new('Error: Unable to retreive user profile try again later')
         end
-      else
-        raise WeChatException.new('Error: Unable to retreive user profile try again later')
+      rescue Net::ReadTimeout => nre
+        raise TimeoutException.new("Timeout accessing profile #{PROFILE_URL}")
       end
     end
 

@@ -27,5 +27,7 @@ module Wechat
   class InvalidOpenIdException < WeChatException
   end
 
+  class TimeoutException < WeChatException
+  end
 
 end
