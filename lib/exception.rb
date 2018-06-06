@@ -30,4 +30,7 @@ module Wechat
   class TimeoutException < WeChatException
   end
 
+  class InvalidDecryptionKeyException < WeChatException
+  end
+
 end
