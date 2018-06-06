@@ -230,12 +230,16 @@ module Wechat
     private
       def send request
         url = "#{SEND_URL}#{@access_token}"
-        response = HTTParty.post(url, body: request, :debug_output => $stdout)
-        if response
-          return response
-        else
-          # {"errcode"=>45015, "errmsg"=>"response out of time limit or subscription is canceled hint: [iJ012a0633age6]"}
-          raise "Error: WeChat Message not sent!"
+        begin
+          response = HTTParty.post(url, body: request, :debug_output => $stdout)
+          if response
+            return response
+          else
+            # {"errcode"=>45015, "errmsg"=>"response out of time limit or subscription is canceled hint: [iJ012a0633age6]"}
+            raise "Error: WeChat Message not sent!"
+          end
+        rescue Net::ReadTimeout => nre
+          raise TimeoutException.new("Timeout exception while sending message")
         end
       end
 
