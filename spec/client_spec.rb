@@ -97,6 +97,30 @@ EOS
 
   end
 
+  context 'can check a user profile' do
+    it 'can successfully retrieve a profile' do
+      we_chat_client.access_token = "token"
+      we_chat_client.access_token_expiry = Time.now.to_i + 7200
+
+      stub = stub_request(:get, "#{Wechat::Client::PROFILE_URL}access_token=token&openid=123&lang=en_US")
+        .to_return(status: 200, body: { "subscribe" => 1, "nickname" => "Trevor" }.to_json, headers: {})
+
+      profile = we_chat_client.get_profile("123")
+      expect(profile['subscribe']).to eql(1)
+      expect(profile['nickname']).to eql("Trevor")
+    end
+
+    it 'can handle an error where an invalid open id tries to request a profile' do
+      we_chat_client.access_token = "token"
+      we_chat_client.access_token_expiry = Time.now.to_i + 7200
+
+      stub = stub_request(:get, "#{Wechat::Client::PROFILE_URL}access_token=token&openid=123&lang=en_US")
+        .to_return(status: 200, body: { "errcode" => 40003, "errmsg" => "invalid openid hint: [VElNAA0508sha5]" }.to_json, headers: {})
+
+      expect{ we_chat_client.get_profile("123") }.to raise_error(Wechat::InvalidOpenIdException)
+    end
+  end
+
   context 'can receive a location' do
     it do
       expect(we_chat_client.receive_message(location_message, nil)['MsgType']).to eq('location')

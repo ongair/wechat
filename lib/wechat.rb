@@ -4,13 +4,14 @@ require 'httparty'
 require 'httmultiparty'
 require 'json'
 require 'emoji'
+require 'exception'
 
 module Wechat
   class Client
     attr_accessor :app_id, :secret, :access_token, :access_token_expiry, :customer_token, :validate, :error
     SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
     PROFILE_URL = 'https://api.wechat.com/cgi-bin/user/info?'
-    UPLOAD_URL = 'http://file.api.wechat.com/cgi-bin/media/upload?access_token='
+    UPLOAD_URL = 'http://api.wechat.com/cgi-bin/media/upload?access_token='
     FILE_URL = 'http://file.api.wechat.com/cgi-bin/media/get?access_token='
     ACCESS_TOKEN_URL = 'https://api.wechat.com/cgi-bin/token'
 
@@ -182,7 +183,12 @@ module Wechat
       url = "#{PROFILE_URL}access_token=#{access_token}&openid=#{user_id}&lang=#{lang}"
       response = HTTParty.get(url, :debug_output => $stdout)
       if response
-        return response
+        result = JSON.parse(response.body)
+        if WeChatException.has_error?(result)
+          raise WeChatException.get_error(result)
+        else
+          return result
+        end
       else
         raise 'Error: Unable to retreive user profile'
       end
