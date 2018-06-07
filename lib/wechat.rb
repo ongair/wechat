@@ -221,6 +221,7 @@ module Wechat
         hash = JSON.parse(response.body).merge(Hash['time_stamp',Time.now.to_i])
         if !hash['errcode'].nil?
           @error = hash['errmsg']
+          raise AccessTokenException.new("Error getting access token for #{@app_id} - #{@error}")
         else
           @access_token = hash["access_token"]
           @access_token_expiry = Time.at(hash["expires_in"].to_i + hash["time_stamp"].to_i)

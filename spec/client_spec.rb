@@ -150,8 +150,16 @@ EOS
     end
   end
 
-  context 'can send a message with no access token' do
-    it do
+  context 'access token' do
+
+    it 'throws an access token exception if there is an error getting a token' do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+        to_return(:status => 200, :body => { "errcode" => 40013, "errmsg" => "invalid app id" }.to_json, :headers => {})
+
+      expect{ we_chat_client.send_message(to_user,'text',message) }.to raise_error(Wechat::AccessTokenException)
+    end
+
+    it 'can send a message with no access token' do
       stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
       to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
       expect(we_chat_client.access_token).to eql(nil)
