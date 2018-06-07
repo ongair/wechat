@@ -156,9 +156,9 @@ EOS
       to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
       expect(we_chat_client.access_token).to eql(nil)
 
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
-        debug_output: $stdout} ).and_return(true)
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client.send_message(to_user,'text',message)).to be(true)
       expect(we_chat_client.access_token).to eql('token_within_client')
@@ -171,9 +171,9 @@ EOS
     it do
       expect(we_chat_client_2.access_token).to eql('token_within_client')
 
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
-        debug_output: $stdout} ).and_return(true)
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client_2.send_message(to_user,'text',message)).to be(true)
       expect(we_chat_client_2.access_token).to eql('token_within_client')
@@ -188,9 +188,9 @@ EOS
 
       expect(we_chat_client_2.access_token).to eql(nil)
 
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
-        debug_output: $stdout} ).and_return(true)
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client_2.send_message(to_user,'text',message)).to be(true)
       expect(we_chat_client_2.access_token).to eql('token_within_client')
@@ -205,9 +205,9 @@ EOS
 
       expect(we_chat_client_2.access_token).to eql('token_within_client')
 
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client_2",
-        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
-        debug_output: $stdout} ).and_return(true)
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client_2")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client_2.send_message(to_user,'text',message)).to be(true)
       expect(we_chat_client_2.access_token).to eql('token_within_client_2')
@@ -228,9 +228,9 @@ EOS
       expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
         {body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300}).and_return(response)
 
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        {:body => "{\"touser\":\"12345\",\"msgtype\":\"image\",\"image\":{\"media_id\":\"12345\"}}",
-        debug_output: $stdout} ).and_return(true)
+        stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+          .with(body: { touser: "12345", msgtype: "image", image: { media_id: "12345" }}.to_json )
+          .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client.send_image(to_user, file)).to be(true)
     end
@@ -268,27 +268,57 @@ EOS
       stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
       to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
 
-
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        { body: { touser: '12345', msgtype: 'news', news: { articles: [{ title: 'Attachment', description: 'See Attachment', picurl: url }]} }.to_json,
-        debug_output: $stdout} ).and_return(true)
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: '12345', msgtype: 'news', news: { articles: [{ title: 'Attachment', description: 'See Attachment', picurl: url }]} }.to_json )
+        .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client.send_rich_media_message(to_user,'Attachment', 'See Attachment', url)).to be(true)
-
     end
   end
 
-  context 'raises error if message refuses to send' do
-    it do
+  context 'error handling' do
+
+    it 'handles timeout exceptions' do
       stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
-      to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+        to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
 
-      expect(we_chat_client.access_token).to eql(nil)
       expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
-        debug_output: $stdout} ).and_return(false)
+        {body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json, debug_output: $stdout}).and_raise(Net::ReadTimeout)
 
-      expect { we_chat_client.send_message(to_user,'text',message) }.to raise_error(RuntimeError)
+      expect{ we_chat_client.send_message(to_user, 'text', message) }.to raise_error(Wechat::TimeoutException)
+    end
+
+    it 'raises error if unexepected error' do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+        to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
+      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
+        {body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json, debug_output: $stdout}).and_raise(Net::ReadTimeout)
+
+      expect{ we_chat_client.send_message(to_user, 'text', message) }.to raise_error(Wechat::TimeoutException)
+
+    end
+
+    it 'raises error if we get a non 200 error code' do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+        to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(status: 422)
+
+      expect{ we_chat_client.send_message(to_user, 'text', message) }.to raise_error(Wechat::WeChatException)
+    end
+
+    it 'raises error an invalid subscription exception' do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+        to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(status: 200, body: { errcode: 45015 , errmsg: "Invalid subscription" }.to_json )
+
+      expect{ we_chat_client.send_message(to_user, 'text', message) }.to raise_error(Wechat::InvalidSubscriptionException)
     end
   end
 
