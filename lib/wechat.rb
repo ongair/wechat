@@ -11,7 +11,7 @@ module Wechat
     attr_accessor :app_id, :secret, :access_token, :access_token_expiry, :customer_token, :validate, :error
     SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
     PROFILE_URL = 'https://api.wechat.com/cgi-bin/user/info?'
-    UPLOAD_URL = 'http://api.wechat.com/cgi-bin/media/upload?access_token='
+    UPLOAD_URL = 'http://file.api.wechat.com/cgi-bin/media/upload?access_token='
     FILE_URL = 'http://file.api.wechat.com/cgi-bin/media/get?access_token='
     ACCESS_TOKEN_URL = 'https://api.wechat.com/cgi-bin/token'
 
