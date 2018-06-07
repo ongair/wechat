@@ -147,7 +147,7 @@ module Wechat
           end
         end
       rescue Net::ReadTimeout => tme
-        raise Wechat::TimeoutException.new("Timeout while accessing #{UPLOAD_URL}")
+        raise Wechat::TimeoutException.new("Timeout while accessing #{UPLOAD_URL} - #{@app_id}")
       end
       return media_id
     end
@@ -240,7 +240,7 @@ module Wechat
             raise "Error: WeChat Message not sent!"
           end
         rescue Net::ReadTimeout => nre
-          raise TimeoutException.new("Timeout exception while sending message")
+          raise TimeoutException.new("Timeout exception while sending message - #{@app_id}")
         end
       end
 
