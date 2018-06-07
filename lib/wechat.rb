@@ -141,7 +141,7 @@ module Wechat
           result = JSON.parse(response.body)
 
           if WeChatException.has_error?(result)
-            raise WeChatException.get_error(result)
+            raise WeChatException.get_error(result, @app_id)
           else
             media_id = result['media_id']
           end
@@ -201,7 +201,7 @@ module Wechat
         if response && response.code == 200
           result = JSON.parse(response.body)
           if WeChatException.has_error?(result)
-            raise WeChatException.get_error(result)
+            raise WeChatException.get_error(result, @app_id)
           else
             return result
           end

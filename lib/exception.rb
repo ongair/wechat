@@ -15,6 +15,7 @@ module Wechat
       when 45015
         error = InvalidSubscriptionException.new("Attempted to send message to user with expired subscription - #{app_id}")
       end
+      error ||= WeChatException.new("Unexepected error for #{app_id} - #{hash['errmsg']}")
       error
     end
 
