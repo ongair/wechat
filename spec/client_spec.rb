@@ -233,8 +233,9 @@ EOS
 
       expect(response).to receive(:body).and_return({ media_id: '12345' }.to_json)
       expect(response).to receive(:code).and_return(200)
-      expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
-        {body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300}).and_return(response)
+      # expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
+      #   {body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300}).and_return(response)
+      expect(RestClient).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client", { type: 'Image', media: file }).and_return(response)
 
         stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
           .with(body: { touser: "12345", msgtype: "image", image: { media_id: "12345" }}.to_json )
@@ -251,8 +252,9 @@ EOS
       stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
       to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
 
-      expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
-        {body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300}).and_raise(Net::ReadTimeout)
+      # expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
+      #   {body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300}).and_raise(Net::ReadTimeout)
+      expect(RestClient).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client", { type: 'Image', media: file }).and_raise(Net::ReadTimeout)
 
       expect{ we_chat_client.send_image(to_user, file) }.to raise_error(Wechat::TimeoutException)
     end

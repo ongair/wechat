@@ -2,6 +2,7 @@ require 'wechat/version'
 require 'nokogiri'
 require 'httparty'
 require 'httmultiparty'
+require 'restclient'
 require 'json'
 require 'emoji'
 require 'exception'
@@ -136,7 +137,8 @@ module Wechat
     def upload_image file
       media_id = nil
       begin
-        response = HTTMultiParty.post("#{UPLOAD_URL}#{@access_token}", body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300)
+        # response = HTTMultiParty.post("#{UPLOAD_URL}#{@access_token}", body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300)
+        response = RestClient.post "#{UPLOAD_URL}#{@access_token}", { type: 'Image', media: file }
         if response.code == 200
           result = JSON.parse(response.body)
 
