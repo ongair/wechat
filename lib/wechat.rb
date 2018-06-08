@@ -146,7 +146,7 @@ module Wechat
             media_id = result['media_id']
           end
         end
-      rescue Net::ReadTimeout => tme
+      rescue Net::ReadTimeout, SocketError => tme
         raise Wechat::TimeoutException.new("Timeout while accessing #{UPLOAD_URL} - #{@app_id}")
       end
       return media_id
