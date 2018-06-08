@@ -138,7 +138,8 @@ module Wechat
       media_id = nil
       begin
         # response = HTTMultiParty.post("#{UPLOAD_URL}#{@access_token}", body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300)
-        response = RestClient.post "#{UPLOAD_URL}#{@access_token}", { type: 'Image', media: file }
+        response = RestClient::Request.execute(method: :post, url: "#{UPLOAD_URL}#{@access_token}", payload: { type: 'Image', media: file }, timeout: 300)
+        # response = RestClient.execute "#{UPLOAD_URL}#{@access_token}", { type: 'Image', media: file }
         if response.code == 200
           result = JSON.parse(response.body)
 
@@ -148,7 +149,7 @@ module Wechat
             media_id = result['media_id']
           end
         end
-      rescue Net::ReadTimeout, SocketError => tme
+      rescue Net::ReadTimeout, SocketError, RestClient::GatewayTimeout => tme
         raise Wechat::TimeoutException.new("Timeout while accessing #{UPLOAD_URL} - #{@app_id}")
       end
       return media_id
