@@ -2,15 +2,17 @@ require 'wechat/version'
 require 'nokogiri'
 require 'httparty'
 require 'httmultiparty'
+require 'restclient'
 require 'json'
 require 'emoji'
+require 'exception'
 
 module Wechat
   class Client
     attr_accessor :app_id, :secret, :access_token, :access_token_expiry, :customer_token, :validate, :error
     SEND_URL = 'https://api.wechat.com/cgi-bin/message/custom/send?access_token='
     PROFILE_URL = 'https://api.wechat.com/cgi-bin/user/info?'
-    UPLOAD_URL = 'http://file.api.wechat.com/cgi-bin/media/upload?access_token='
+    UPLOAD_URL = 'https://api.wechat.com/cgi-bin/media/upload?access_token='
     FILE_URL = 'http://file.api.wechat.com/cgi-bin/media/get?access_token='
     ACCESS_TOKEN_URL = 'https://api.wechat.com/cgi-bin/token'
 
@@ -133,8 +135,24 @@ module Wechat
     end
 
     def upload_image file
-      response = HTTMultiParty.post("#{UPLOAD_URL}#{@access_token}", body: { type: 'Image', media: file }, debug_output: $stdout)
-      media_id = JSON.parse(response.body)['media_id']
+      media_id = nil
+      begin
+        # response = HTTMultiParty.post("#{UPLOAD_URL}#{@access_token}", body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300)
+        response = RestClient::Request.execute(method: :post, url: "#{UPLOAD_URL}#{@access_token}", payload: { type: 'Image', media: file }, timeout: 300)
+        # response = RestClient.execute "#{UPLOAD_URL}#{@access_token}", { type: 'Image', media: file }
+        if response.code == 200
+          result = JSON.parse(response.body)
+
+          if WeChatException.has_error?(result)
+            raise WeChatException.get_error(result, @app_id)
+          else
+            media_id = result['media_id']
+          end
+        end
+      rescue Net::ReadTimeout, SocketError, RestClient::GatewayTimeout => tme
+        raise Wechat::TimeoutException.new("Timeout while accessing #{UPLOAD_URL} - #{@app_id}")
+      end
+      return media_id
     end
 
     def send_multiple_rich_messages to, messages
@@ -180,11 +198,21 @@ module Wechat
     def get_profile user_id, lang="en_US"
       get_access_token
       url = "#{PROFILE_URL}access_token=#{access_token}&openid=#{user_id}&lang=#{lang}"
-      response = HTTParty.get(url, :debug_output => $stdout)
-      if response
-        return response
-      else
-        raise 'Error: Unable to retreive user profile'
+
+      begin
+        response = HTTParty.get(url, :debug_output => $stdout)
+        if response && response.code == 200
+          result = JSON.parse(response.body)
+          if WeChatException.has_error?(result)
+            raise WeChatException.get_error(result, @app_id)
+          else
+            return result
+          end
+        else
+          raise WeChatException.new('Error: Unable to retreive user profile try again later')
+        end
+      rescue Net::ReadTimeout => nre
+        raise TimeoutException.new("Timeout accessing profile #{PROFILE_URL}")
       end
     end
 
@@ -196,6 +224,7 @@ module Wechat
         hash = JSON.parse(response.body).merge(Hash['time_stamp',Time.now.to_i])
         if !hash['errcode'].nil?
           @error = hash['errmsg']
+          raise AccessTokenException.new("Error getting access token for #{@app_id} - #{@error}")
         else
           @access_token = hash["access_token"]
           @access_token_expiry = Time.at(hash["expires_in"].to_i + hash["time_stamp"].to_i)
@@ -206,12 +235,21 @@ module Wechat
     private
       def send request
         url = "#{SEND_URL}#{@access_token}"
-        response = HTTParty.post(url, body: request, :debug_output => $stdout)
-        if response
-          return response
-        else
-          # {"errcode"=>45015, "errmsg"=>"response out of time limit or subscription is canceled hint: [iJ012a0633age6]"}
-          raise "Error: WeChat Message not sent!"
+        begin
+          response = HTTParty.post(url, body: request, :debug_output => $stdout)
+          if response.code == 200
+            result = JSON.parse(response.body)
+            if WeChatException.has_error?(result)
+              raise WeChatException.get_error(result, @app_id)
+            else
+              return result['errmsg'] == 'ok'
+            end
+          else
+            # either a 400 or other kind of exception
+            raise WeChatException.new("Unexpected error #{response.code} when trying to send - #{@app_id}")
+          end
+        rescue Net::ReadTimeout => nre
+          raise TimeoutException.new("Timeout exception while sending message - #{@app_id}")
         end
       end
 
