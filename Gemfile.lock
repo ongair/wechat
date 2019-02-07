@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wechat (0.0.1.37)
+    wechat (0.0.1.38)
       httmultiparty
       httparty
       nokogiri (= 1.8.2)
@@ -24,15 +24,19 @@ GEM
       multipart-post
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    httparty (0.16.2)
+    httparty (0.16.4)
+      mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
     json (1.8.3)
+    metaclass (0.0.4)
     method_source (0.8.2)
-    mime-types (3.1)
+    mime-types (3.2.2)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
+    mime-types-data (3.2018.0812)
+    mimemagic (0.3.3)
     mini_portile2 (2.3.0)
+    mocha (1.8.0)
+      metaclass (~> 0.0.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     netrc (0.11.0)
@@ -79,6 +83,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.7)
+  mocha
   pry
   rake (~> 10.0)
   rspec
@@ -87,4 +92,4 @@ DEPENDENCIES
   wechat!
 
 BUNDLED WITH
-   1.16.1
+   1.16.6

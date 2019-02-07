@@ -21,6 +21,12 @@ module Wechat
 
   end
 
+  class EmojiEncodingException <  WeChatException
+    def initialize(regex, text)
+      super("Error with parsing emoji code in #{text} - #{regex}")
+    end
+  end
+
   class MediaUploadException < WeChatException
   end
 
