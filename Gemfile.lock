@@ -4,7 +4,7 @@ PATH
     wechat (0.0.1.38)
       httmultiparty
       httparty
-      nokogiri (= 1.8.2)
+      nokogiri (= 1.8.5)
       rest-client
 
 GEM
@@ -40,7 +40,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     netrc (0.11.0)
-    nokogiri (1.8.2)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
