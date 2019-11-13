@@ -48,5 +48,16 @@ describe Wechat::Emoji do
       text = "I want to /::) but it comes out as a /:,@P"
       expect(Wechat::Emoji.replace_with_unicode(text)).to eql("I want to \u{1F600} but it comes out as a /:,@P")
     end
+
+    it 'Can throw and error if there is a problem with encoding' do
+      text = "Code with error /::)"
+
+      allow_any_instance_of(String).to receive(:gsub!).and_raise(Encoding::CompatibilityError)
+      # expect(Wechat::Emoji.replace_with_unicode(text)).to raise_error(Wechat::EmojiEncodingException)
+      expect{ Wechat::Emoji.replace_with_unicode(text) }.to raise_error(Wechat::EmojiEncodingException)
+
+      # expect { raise "oops" }.to raise_error
+      # expect { "oops".gsub!("o", "a") }.to raise_error(Encoding::CompatibilityError)
+    end
   end
 end

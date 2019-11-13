@@ -97,6 +97,50 @@ EOS
 
   end
 
+  context 'can check a user profile' do
+    it 'can successfully retrieve a profile' do
+      we_chat_client.access_token = "token"
+      we_chat_client.access_token_expiry = Time.now.to_i + 7200
+
+      stub = stub_request(:get, "#{Wechat::Client::PROFILE_URL}access_token=token&openid=123&lang=en_US")
+        .to_return(status: 200, body: { "subscribe" => 1, "nickname" => "Trevor" }.to_json, headers: {})
+
+      profile = we_chat_client.get_profile("123")
+      expect(profile['subscribe']).to eql(1)
+      expect(profile['nickname']).to eql("Trevor")
+    end
+
+    it 'can handle an error where an invalid open id tries to request a profile' do
+      we_chat_client.access_token = "token"
+      we_chat_client.access_token_expiry = Time.now.to_i + 7200
+
+      stub = stub_request(:get, "#{Wechat::Client::PROFILE_URL}access_token=token&openid=123&lang=en_US")
+        .to_return(status: 200, body: { "errcode" => 40003, "errmsg" => "invalid openid hint: [VElNAA0508sha5]" }.to_json, headers: {})
+
+      expect{ we_chat_client.get_profile("123") }.to raise_error(Wechat::InvalidOpenIdException)
+    end
+
+    it 'can handle an error where there is general connectivity issues' do
+      we_chat_client.access_token = "token"
+      we_chat_client.access_token_expiry = Time.now.to_i + 7200
+
+      stub = stub_request(:get, "#{Wechat::Client::PROFILE_URL}access_token=token&openid=123&lang=en_US")
+        .to_return(status: 500, headers: {})
+
+      expect{ we_chat_client.get_profile("123") }.to raise_error(Wechat::WeChatException)
+    end
+
+    it 'can handle an error where the oa does not have sufficient permissions' do
+      we_chat_client.access_token = "token"
+      we_chat_client.access_token_expiry = Time.now.to_i + 7200
+
+      stub = stub_request(:get, "#{Wechat::Client::PROFILE_URL}access_token=token&openid=123&lang=en_US")
+        .to_return(status: 200, body: { "errcode" => 48001, "errmsg" => "Unauthorized API function hint: [VElNAA0508sha5]" }.to_json, headers: {})
+
+      expect{ we_chat_client.get_profile("123") }.to raise_error(Wechat::InsufficientPermissionsException)
+    end
+  end
+
   context 'can receive a location' do
     it do
       expect(we_chat_client.receive_message(location_message, nil)['MsgType']).to eq('location')
@@ -106,15 +150,23 @@ EOS
     end
   end
 
-  context 'can send a message with no access token' do
-    it do
+  context 'access token' do
+
+    it 'throws an access token exception if there is an error getting a token' do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+        to_return(:status => 200, :body => { "errcode" => 40013, "errmsg" => "invalid app id" }.to_json, :headers => {})
+
+      expect{ we_chat_client.send_message(to_user,'text',message) }.to raise_error(Wechat::AccessTokenException)
+    end
+
+    it 'can send a message with no access token' do
       stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
       to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
       expect(we_chat_client.access_token).to eql(nil)
 
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
-        debug_output: $stdout} ).and_return(true)
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client.send_message(to_user,'text',message)).to be(true)
       expect(we_chat_client.access_token).to eql('token_within_client')
@@ -127,9 +179,9 @@ EOS
     it do
       expect(we_chat_client_2.access_token).to eql('token_within_client')
 
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
-        debug_output: $stdout} ).and_return(true)
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client_2.send_message(to_user,'text',message)).to be(true)
       expect(we_chat_client_2.access_token).to eql('token_within_client')
@@ -144,9 +196,9 @@ EOS
 
       expect(we_chat_client_2.access_token).to eql(nil)
 
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
-        debug_output: $stdout} ).and_return(true)
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client_2.send_message(to_user,'text',message)).to be(true)
       expect(we_chat_client_2.access_token).to eql('token_within_client')
@@ -161,9 +213,9 @@ EOS
 
       expect(we_chat_client_2.access_token).to eql('token_within_client')
 
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client_2",
-        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
-        debug_output: $stdout} ).and_return(true)
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client_2")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client_2.send_message(to_user,'text',message)).to be(true)
       expect(we_chat_client_2.access_token).to eql('token_within_client_2')
@@ -171,7 +223,7 @@ EOS
   end
 
   context 'can send an image' do
-    it do
+    it 'can successfully send an image' do
       file = File.open('spec/files/wechat.jpg')
 
       response = {}
@@ -179,16 +231,34 @@ EOS
       stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
       to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
 
-
       expect(response).to receive(:body).and_return({ media_id: '12345' }.to_json)
-      expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
-        {body: { type: 'Image', media: file }, debug_output: $stdout}).and_return(response)
+      expect(response).to receive(:code).and_return(200)
+      # expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
+      #   {body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300}).and_return(response)
+      # expect(RestClient).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client", { type: 'Image', media: file }).and_return(response)
+      expect(RestClient::Request).to receive(:execute).with(method: :post, url: "#{Wechat::Client::UPLOAD_URL}token_within_client", payload: { type: 'Image', media: file }, timeout: 300).and_return(response)
 
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        {:body => "{\"touser\":\"12345\",\"msgtype\":\"image\",\"image\":{\"media_id\":\"12345\"}}",
-        debug_output: $stdout} ).and_return(true)
+        stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+          .with(body: { touser: "12345", msgtype: "image", image: { media_id: "12345" }}.to_json )
+          .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client.send_image(to_user, file)).to be(true)
+    end
+
+    it 'can handle an error when sending an image' do
+      file = File.open('spec/files/wechat.jpg')
+
+      response = {}
+
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+      to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
+      # expect(HTTMultiParty).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client",
+      #   {body: { type: 'Image', media: file }, debug_output: $stdout, timeout: 300}).and_raise(Net::ReadTimeout)
+      # expect(RestClient).to receive(:post).with("#{Wechat::Client::UPLOAD_URL}token_within_client", { type: 'Image', media: file }).and_raise(Net::ReadTimeout)
+      expect(RestClient::Request).to receive(:execute).with(method: :post, url: "#{Wechat::Client::UPLOAD_URL}token_within_client", payload: { type: 'Image', media: file }, timeout: 300).and_raise(Net::ReadTimeout)
+
+      expect{ we_chat_client.send_image(to_user, file) }.to raise_error(Wechat::TimeoutException)
     end
   end
 
@@ -210,27 +280,57 @@ EOS
       stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
       to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
 
-
-      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        { body: { touser: '12345', msgtype: 'news', news: { articles: [{ title: 'Attachment', description: 'See Attachment', picurl: url }]} }.to_json,
-        debug_output: $stdout} ).and_return(true)
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: '12345', msgtype: 'news', news: { articles: [{ title: 'Attachment', description: 'See Attachment', picurl: url }]} }.to_json )
+        .to_return(body: { errcode: 0, errmsg: "ok" }.to_json)
 
       expect(we_chat_client.send_rich_media_message(to_user,'Attachment', 'See Attachment', url)).to be(true)
-
     end
   end
 
-  context 'raises error if message refuses to send' do
-    it do
+  context 'error handling' do
+
+    it 'handles timeout exceptions' do
       stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
-      to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+        to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
 
-      expect(we_chat_client.access_token).to eql(nil)
       expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
-        {:body=>"{\"touser\":\"12345\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello world\"}}",
-        debug_output: $stdout} ).and_return(false)
+        {body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json, debug_output: $stdout}).and_raise(Net::ReadTimeout)
 
-      expect { we_chat_client.send_message(to_user,'text',message) }.to raise_error(RuntimeError)
+      expect{ we_chat_client.send_message(to_user, 'text', message) }.to raise_error(Wechat::TimeoutException)
+    end
+
+    it 'raises error if unexepected error' do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+        to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
+      expect(HTTParty).to receive(:post).with("#{Wechat::Client::SEND_URL}token_within_client",
+        {body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json, debug_output: $stdout}).and_raise(Net::ReadTimeout)
+
+      expect{ we_chat_client.send_message(to_user, 'text', message) }.to raise_error(Wechat::TimeoutException)
+
+    end
+
+    it 'raises error if we get a non 200 error code' do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+        to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(status: 422)
+
+      expect{ we_chat_client.send_message(to_user, 'text', message) }.to raise_error(Wechat::WeChatException)
+    end
+
+    it 'raises error an invalid subscription exception' do
+      stub_request(:get, "#{Wechat::Client::ACCESS_TOKEN_URL}?appid=app_id&grant_type=client_credential&secret=secret").
+        to_return(:status => 200, :body => { "access_token" => "token_within_client", "expires_in" => 7200}.to_json, :headers => {})
+
+      stub_request(:post, "#{Wechat::Client::SEND_URL}token_within_client")
+        .with(body: { touser: "12345", msgtype: "text", text: { content: "Hello world" }}.to_json )
+        .to_return(status: 200, body: { errcode: 45015 , errmsg: "Invalid subscription" }.to_json )
+
+      expect{ we_chat_client.send_message(to_user, 'text', message) }.to raise_error(Wechat::InvalidSubscriptionException)
     end
   end
 

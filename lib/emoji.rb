@@ -12,7 +12,11 @@ module Wechat
           key = "/:#{match.first}"
 
           emoji = EMOJI[key]
-          text.gsub!(emoji[:regex], emoji[:unicode])
+          begin
+            text.gsub!(emoji[:regex], emoji[:unicode])
+          rescue Encoding::CompatibilityError => ce
+            raise Wechat::EmojiEncodingException.new(emoji[:name],text)
+          end
         end
       end
       text
