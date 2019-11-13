@@ -105,6 +105,8 @@ module Wechat
           { touser: to, msgtype: msg_type, text: { content: content }}.to_json
         when 'image'
           { touser: to, msgtype: msg_type, image: { media_id: content }}.to_json
+        when 'file'
+          { touser: to, msgtype: msg_type, file: { media_id: content } }.to_json
         end
       send request
     end
@@ -122,6 +124,13 @@ module Wechat
       return send_message to, 'image', media_id
     end
 
+    def send_document(to, file)
+      get_access_token
+      response = HTTMultiParty.post("#{UPLOAD_URL}#{@access_token}", body: { type: 'File', media: file }, debug_output: $stdout)
+      media_id = JSON.parse(response.body)['media_id']
+
+      send_message to, 'file', media_id
+    end
     # Get the url for an attachment
     #
     # @param media_id [String] the id of the media file
